@@ -1,1 +1,2 @@
-# basicr_2020_21_2
+Basic R course
+2020/21/2

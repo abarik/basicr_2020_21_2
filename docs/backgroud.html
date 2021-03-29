@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 How to use R | Basic R</title>
+  <meta name="description" content="Course materials for Basic R" />
+  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 How to use R | Basic R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Course materials for Basic R" />
+  <meta name="github-repo" content="cengel/R-intro" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 How to use R | Basic R" />
+  
+  <meta name="twitter:description" content="Course materials for Basic R" />
+  
+
+<meta name="author" content="Kálmán Abari" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="the-r-language.html"/>
+<script src="libs/header-attrs-2.7.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Basic R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#setup-instructions"><i class="fa fa-check"></i>Setup Instructions</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#windows"><i class="fa fa-check"></i>Windows</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#macos"><i class="fa fa-check"></i>macOS</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#linux"><i class="fa fa-check"></i>Linux</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="backgroud.html"><a href="backgroud.html"><i class="fa fa-check"></i><b>1</b> How to use R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="backgroud.html"><a href="backgroud.html#base-r"><i class="fa fa-check"></i><b>1.1</b> Base R</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="backgroud.html"><a href="backgroud.html#console-of-base-r"><i class="fa fa-check"></i><b>1.1.1</b> Console of Base R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="backgroud.html"><a href="backgroud.html#rgui-on-windows"><i class="fa fa-check"></i><b>1.1.2</b> RGui on Windows</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="backgroud.html"><a href="backgroud.html#rstudio"><i class="fa fa-check"></i><b>1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="backgroud.html"><a href="backgroud.html#what-is-r-what-is-rstudio"><i class="fa fa-check"></i><b>1.3</b> What is R? What is RStudio?</a></li>
+<li class="chapter" data-level="1.4" data-path="backgroud.html"><a href="backgroud.html#why-learn-r"><i class="fa fa-check"></i><b>1.4</b> Why learn R?</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="backgroud.html"><a href="backgroud.html#r-does-not-involve-lots-of-pointing-and-clicking-and-thats-a-good-thing"><i class="fa fa-check"></i><b>1.4.1</b> R does not involve lots of pointing and clicking, and that’s a good thing</a></li>
+<li class="chapter" data-level="1.4.2" data-path="backgroud.html"><a href="backgroud.html#r-code-is-great-for-reproducibility"><i class="fa fa-check"></i><b>1.4.2</b> R code is great for reproducibility</a></li>
+<li class="chapter" data-level="1.4.3" data-path="backgroud.html"><a href="backgroud.html#r-is-interdisciplinary-and-extensible"><i class="fa fa-check"></i><b>1.4.3</b> R is interdisciplinary and extensible</a></li>
+<li class="chapter" data-level="1.4.4" data-path="backgroud.html"><a href="backgroud.html#r-works-on-data-of-all-shapes-and-sizes"><i class="fa fa-check"></i><b>1.4.4</b> R works on data of all shapes and sizes</a></li>
+<li class="chapter" data-level="1.4.5" data-path="backgroud.html"><a href="backgroud.html#r-produces-high-quality-graphics"><i class="fa fa-check"></i><b>1.4.5</b> R produces high-quality graphics</a></li>
+<li class="chapter" data-level="1.4.6" data-path="backgroud.html"><a href="backgroud.html#r-has-a-large-community"><i class="fa fa-check"></i><b>1.4.6</b> R has a large community</a></li>
+<li class="chapter" data-level="1.4.7" data-path="backgroud.html"><a href="backgroud.html#not-only-is-r-free-but-it-is-also-open-source-and-cross-platform"><i class="fa fa-check"></i><b>1.4.7</b> Not only is R free, but it is also open-source and cross-platform</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="backgroud.html"><a href="backgroud.html#knowing-your-way-around-rstudio"><i class="fa fa-check"></i><b>1.5</b> Knowing your way around RStudio</a></li>
+<li class="chapter" data-level="1.6" data-path="backgroud.html"><a href="backgroud.html#how-to-start-an-r-project"><i class="fa fa-check"></i><b>1.6</b> How to start an R project</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="backgroud.html"><a href="backgroud.html#organizing-your-working-directory"><i class="fa fa-check"></i><b>1.6.1</b> Organizing your working directory</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="backgroud.html"><a href="backgroud.html#interacting-with-r"><i class="fa fa-check"></i><b>1.7</b> Interacting with R</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="backgroud.html"><a href="backgroud.html#rstudio-console-and-command-prompt"><i class="fa fa-check"></i><b>1.7.1</b> RStudio Console and Command Prompt</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="backgroud.html"><a href="backgroud.html#quarterly-results"><i class="fa fa-check"></i><b>1.8</b> Quarterly Results</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="backgroud.html"><a href="backgroud.html#by-product"><i class="fa fa-check"></i><b>1.8.1</b> By Product</a></li>
+<li class="chapter" data-level="1.8.2" data-path="backgroud.html"><a href="backgroud.html#by-region"><i class="fa fa-check"></i><b>1.8.2</b> By Region</a></li>
+<li class="chapter" data-level="1.8.3" data-path="backgroud.html"><a href="backgroud.html#rstudio-script-editor"><i class="fa fa-check"></i><b>1.8.3</b> RStudio Script Editor</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="the-r-language.html"><a href="the-r-language.html"><i class="fa fa-check"></i><b>2</b> The R language</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="the-r-language.html"><a href="the-r-language.html#basic-data-type"><i class="fa fa-check"></i><b>2.1</b> Basic data type</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="the-r-language.html"><a href="the-r-language.html#double"><i class="fa fa-check"></i><b>2.1.1</b> Double</a></li>
+<li class="chapter" data-level="2.1.2" data-path="the-r-language.html"><a href="the-r-language.html#integer"><i class="fa fa-check"></i><b>2.1.2</b> Integer</a></li>
+<li class="chapter" data-level="2.1.3" data-path="the-r-language.html"><a href="the-r-language.html#characters"><i class="fa fa-check"></i><b>2.1.3</b> Characters</a></li>
+<li class="chapter" data-level="2.1.4" data-path="the-r-language.html"><a href="the-r-language.html#logical"><i class="fa fa-check"></i><b>2.1.4</b> Logical</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="the-r-language.html"><a href="the-r-language.html#operators"><i class="fa fa-check"></i><b>2.2</b> Operators</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="the-r-language.html"><a href="the-r-language.html#arithmetic-operators"><i class="fa fa-check"></i><b>2.2.1</b> Arithmetic operators</a></li>
+<li class="chapter" data-level="2.2.2" data-path="the-r-language.html"><a href="the-r-language.html#logical-operators"><i class="fa fa-check"></i><b>2.2.2</b> Logical operators</a></li>
+<li class="chapter" data-level="2.2.3" data-path="the-r-language.html"><a href="the-r-language.html#relational-operators"><i class="fa fa-check"></i><b>2.2.3</b> Relational operators</a></li>
+<li class="chapter" data-level="2.2.4" data-path="the-r-language.html"><a href="the-r-language.html#assigment-operators"><i class="fa fa-check"></i><b>2.2.4</b> Assigment operators</a></li>
+<li class="chapter" data-level="2.2.5" data-path="the-r-language.html"><a href="the-r-language.html#miscellaneous-operators"><i class="fa fa-check"></i><b>2.2.5</b> Miscellaneous operators</a></li>
+<li class="chapter" data-level="2.2.6" data-path="the-r-language.html"><a href="the-r-language.html#operator-precedence-in-r"><i class="fa fa-check"></i><b>2.2.6</b> Operator Precedence in R</a></li>
+<li class="chapter" data-level="2.2.7" data-path="the-r-language.html"><a href="the-r-language.html#binary-and-unary-operators"><i class="fa fa-check"></i><b>2.2.7</b> Binary and unary operators</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="the-r-language.html"><a href="the-r-language.html#working-directory-1"><i class="fa fa-check"></i><b>2.3</b> Working directory</a></li>
+<li class="chapter" data-level="2.4" data-path="the-r-language.html"><a href="the-r-language.html#objects"><i class="fa fa-check"></i><b>2.4</b> Objects</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="the-r-language.html"><a href="the-r-language.html#testing-the-type"><i class="fa fa-check"></i><b>2.4.1</b> Testing the type</a></li>
+<li class="chapter" data-level="2.4.2" data-path="the-r-language.html"><a href="the-r-language.html#coercion"><i class="fa fa-check"></i><b>2.4.2</b> Coercion</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="the-r-language.html"><a href="the-r-language.html#data-structures"><i class="fa fa-check"></i><b>2.5</b> Data structures</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="the-r-language.html"><a href="the-r-language.html#vectors"><i class="fa fa-check"></i><b>2.5.1</b> Vectors</a></li>
+<li class="chapter" data-level="2.5.2" data-path="the-r-language.html"><a href="the-r-language.html#factor"><i class="fa fa-check"></i><b>2.5.2</b> Factor</a></li>
+<li class="chapter" data-level="2.5.3" data-path="the-r-language.html"><a href="the-r-language.html#matrix"><i class="fa fa-check"></i><b>2.5.3</b> Matrix</a></li>
+<li class="chapter" data-level="2.5.4" data-path="the-r-language.html"><a href="the-r-language.html#array"><i class="fa fa-check"></i><b>2.5.4</b> Array</a></li>
+<li class="chapter" data-level="2.5.5" data-path="the-r-language.html"><a href="the-r-language.html#list"><i class="fa fa-check"></i><b>2.5.5</b> List</a></li>
+<li class="chapter" data-level="2.5.6" data-path="the-r-language.html"><a href="the-r-language.html#data-frame"><i class="fa fa-check"></i><b>2.5.6</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="the-r-language.html"><a href="the-r-language.html#functions"><i class="fa fa-check"></i><b>2.6</b> Functions</a></li>
+<li class="chapter" data-level="2.7" data-path="the-r-language.html"><a href="the-r-language.html#vectorized-operations"><i class="fa fa-check"></i><b>2.7</b> Vectorized operations</a></li>
+<li class="chapter" data-level="2.8" data-path="the-r-language.html"><a href="the-r-language.html#creating-date-sequences"><i class="fa fa-check"></i><b>2.8</b> Creating date sequences</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="the-r-language.html"><a href="the-r-language.html#creating-a-sequence-of-numeric-values"><i class="fa fa-check"></i><b>2.8.1</b> Creating a sequence of numeric values</a></li>
+<li class="chapter" data-level="2.8.2" data-path="the-r-language.html"><a href="the-r-language.html#creating-a-sequence-of-repeated-values"><i class="fa fa-check"></i><b>2.8.2</b> Creating a Sequence of Repeated Values</a></li>
+<li class="chapter" data-level="2.8.3" data-path="the-r-language.html"><a href="the-r-language.html#sequential-names"><i class="fa fa-check"></i><b>2.8.3</b> Sequential names</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="the-r-language.html"><a href="the-r-language.html#subsetting"><i class="fa fa-check"></i><b>2.9</b> Subsetting</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="the-r-language.html"><a href="the-r-language.html#subsetting-vector"><i class="fa fa-check"></i><b>2.9.1</b> Subsetting vector</a></li>
+<li class="chapter" data-level="2.9.2" data-path="the-r-language.html"><a href="the-r-language.html#subsetting-data-frames"><i class="fa fa-check"></i><b>2.9.2</b> Subsetting data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="the-r-language.html"><a href="the-r-language.html#string-data"><i class="fa fa-check"></i><b>2.10</b> String data</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="the-r-language.html"><a href="the-r-language.html#simple-character-manipulation"><i class="fa fa-check"></i><b>2.10.1</b> Simple Character Manipulation</a></li>
+<li class="chapter" data-level="2.10.2" data-path="the-r-language.html"><a href="the-r-language.html#searching-and-replacing"><i class="fa fa-check"></i><b>2.10.2</b> Searching and Replacing</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="the-r-language.html"><a href="the-r-language.html#packages-in-r"><i class="fa fa-check"></i><b>2.11</b> Packages in R</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="the-r-language.html"><a href="the-r-language.html#load-packages"><i class="fa fa-check"></i><b>2.11.1</b> Load packages</a></li>
+<li class="chapter" data-level="2.11.2" data-path="the-r-language.html"><a href="the-r-language.html#install-packages"><i class="fa fa-check"></i><b>2.11.2</b> Install packages</a></li>
+<li class="chapter" data-level="2.11.3" data-path="the-r-language.html"><a href="the-r-language.html#masking"><i class="fa fa-check"></i><b>2.11.3</b> Masking</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="the-r-language.html"><a href="the-r-language.html#internal-help"><i class="fa fa-check"></i><b>2.12</b> Internal help</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Getting started with a data analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#data-analysis"><i class="fa fa-check"></i><b>3.1</b> 3 Data analysis</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#descriptive-statistics"><i class="fa fa-check"></i><b>3.1.1</b> 3.1 Descriptive statistics</a></li>
+<li class="chapter" data-level="3.1.2" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#statistical-hypothesis-testing"><i class="fa fa-check"></i><b>3.1.2</b> 3.2 Statistical hypothesis testing</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#publishing-results"><i class="fa fa-check"></i><b>3.2</b> 4 Publishing results</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#datasets"><i class="fa fa-check"></i><b>3.2.1</b> Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#example-one"><i class="fa fa-check"></i><b>3.3</b> Example one</a></li>
+<li class="chapter" data-level="3.4" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#example-two"><i class="fa fa-check"></i><b>3.4</b> Example two</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html"><i class="fa fa-check"></i><b>A</b> Recaps in 1 minutes or less</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#possibilites-of-using-r"><i class="fa fa-check"></i><b>A.1</b> Possibilites of using R</a></li>
+<li class="chapter" data-level="A.2" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#console-features-1"><i class="fa fa-check"></i><b>A.2</b> Console features</a></li>
+<li class="chapter" data-level="A.3" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#advantages-of-script-editor-in-rstudio"><i class="fa fa-check"></i><b>A.3</b> Advantages of Script editor in RStudio</a></li>
+<li class="chapter" data-level="A.4" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#useful-keyboard-shortcuts-in-rstudio"><i class="fa fa-check"></i><b>A.4</b> Useful keyboard shortcuts in RStudio</a></li>
+<li class="chapter" data-level="A.5" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#base-types-in-r"><i class="fa fa-check"></i><b>A.5</b> Base types in R</a></li>
+<li class="chapter" data-level="A.6" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#data-structures-1"><i class="fa fa-check"></i><b>A.6</b> Data structures</a></li>
+<li class="chapter" data-level="A.7" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#operators-1"><i class="fa fa-check"></i><b>A.7</b> Operators</a></li>
+<li class="chapter" data-level="A.8" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#maths-functions"><i class="fa fa-check"></i><b>A.8</b> Maths functions</a></li>
+<li class="chapter" data-level="A.9" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#string-functions"><i class="fa fa-check"></i><b>A.9</b> String functions</a></li>
+<li class="chapter" data-level="A.10" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#base-r-statistical-functions"><i class="fa fa-check"></i><b>A.10</b> Base R Statistical Functions</a></li>
+<li class="chapter" data-level="A.11" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#regular-sequences"><i class="fa fa-check"></i><b>A.11</b> Regular sequences</a></li>
+<li class="chapter" data-level="A.12" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#subsetting-1"><i class="fa fa-check"></i><b>A.12</b> Subsetting</a></li>
+<li class="chapter" data-level="A.13" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#packages"><i class="fa fa-check"></i><b>A.13</b> Packages</a></li>
+<li class="chapter" data-level="A.14" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#readingwriting-data-files"><i class="fa fa-check"></i><b>A.14</b> Reading/Writing data files</a></li>
+<li class="chapter" data-level="A.15" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#filter"><i class="fa fa-check"></i><b>A.15</b> Filter</a></li>
+<li class="chapter" data-level="A.16" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#sort"><i class="fa fa-check"></i><b>A.16</b> Sort</a></li>
+<li class="chapter" data-level="A.17" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#descriptive-statistics-1"><i class="fa fa-check"></i><b>A.17</b> Descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="terminology.html"><a href="terminology.html"><i class="fa fa-check"></i><b>B</b> Terminology</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="terminology.html"><a href="terminology.html#terms-in-statistics"><i class="fa fa-check"></i><b>B.1</b> Terms in Statistics</a></li>
+<li class="chapter" data-level="B.2" data-path="terminology.html"><a href="terminology.html#terms-in-r"><i class="fa fa-check"></i><b>B.2</b> Terms in R</a></li>
+<li class="chapter" data-level="B.3" data-path="terminology.html"><a href="terminology.html#terms-in-statistics-and-r"><i class="fa fa-check"></i><b>B.3</b> Terms in Statistics and R</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>C</b> Miscellaneous</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="miscellaneous.html"><a href="miscellaneous.html#rules-of-using-r"><i class="fa fa-check"></i><b>C.1</b> Rules of using R</a></li>
+<li class="chapter" data-level="C.2" data-path="miscellaneous.html"><a href="miscellaneous.html#good-to-know"><i class="fa fa-check"></i><b>C.2</b> Good to know</a></li>
+<li class="chapter" data-level="C.3" data-path="miscellaneous.html"><a href="miscellaneous.html#why-is-my-code-broken"><i class="fa fa-check"></i><b>C.3</b> Why is my code broken?</a></li>
+<li class="chapter" data-level="C.4" data-path="miscellaneous.html"><a href="miscellaneous.html#other-resources"><i class="fa fa-check"></i><b>C.4</b> Other resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Basic R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="backgroud" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> How to use R</h1>
+<p>There are so many ways to analyse data in R. In my opinion the best way
+is the RStudio. Most R users use R via <em>RStudio</em>. We need both <em>Base R</em>
+and <em>RStudio</em>, as we did earlier, but if we only start the RStudio, so
+we can reach all functions of R. <em>RStudio</em> is an <em>integrated development
+environment (IDE)</em> that provides an interface by adding many convenient
+features and tools.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<img src="img/baser_rstudio.jpg" alt="How to use R – the best way" width="60%" />
+<p class="caption">
+Figure 1.1: How to use R – the best way
+</p>
+</div>
+<p>Of course, we can use the <em>Base R</em> directly. Usually, this is the only
+option that is supported by mainframe environment. But, if you have the
+opportunity, always use <em>RStudio</em> instead of Basic R directly.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="img/baser_rstudio_min.jpg" alt="How to use R – the minimum way" width="60%" />
+<p class="caption">
+Figure 1.2: How to use R – the minimum way
+</p>
+</div>
+<p>Actually, there are several ways to use R, not only <em>Base R</em> and
+<em>RStudio</em>. The table below summarizes the interfaces in the coloumns and
+the tools in the rows. There are three different types of interface:
+<em>Console</em>, <em>Script</em> and <em>Point and clic</em>k. Interfaces allow the user to
+interact with R. </p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<img src="img/baser_rstudio_all.jpg" alt="How to use R – the minimum way" width="90%" />
+<p class="caption">
+Figure 1.3: How to use R – the minimum way
+</p>
+</div>
+<p><strong><em>Console</em></strong> provides a command-line <em>interface</em> that allows the user
+to interact with the computer by typing commands . The computer displays
+a prompt (<code>&gt;</code>), the user types a command and presses <kbd>Enter</kbd> or
+<kbd>Return</kbd>, and gets the result. There are three tools, that
+provide console, the <em>Base R</em> Console (it’s the only option in mainframe
+environment), <em>RGui</em> in <em>Base R</em> on Windows, and <em>RStudio</em>.</p>
+<p>The second interface is the <strong>script interface</strong>. It gives you an editor
+window. You can type multiple lines of code into the source editor
+without having each line evaluated by R. Then, when you’re ready, you
+can send the instructions to R - in other words, source the script -,
+and you get the result. You can reach this funcionality in <em>RGui</em>, <em>R
+Commander</em> and <em>RStudio</em>. <strong>Remember, the best way to use R is creating,
+editing and running scripts in <em>RStudio</em>. This is the best option.</strong></p>
+<p>For begginers, the best option would be to use a <strong>Point-and-click
+interface</strong>. It has a menu, you can choose menupoints, menuitems, you
+can get dialog boxes and type in editfields, point on radio buttons and
+checkboxes. <strong>But the knowledge of these systems have limits</strong>. You can
+execute only methods, which you can reach from the menu. The descriptive
+measures, tables, plots and hypothesis tests, which you can point and
+click, are part of knowledge of R. The whole knowledge can be reached
+only from console or script interface. For example I only use <em>jamovi</em>,
+if I have a simple question and I want to get a quick answer.  So I
+encourage you to install and try jamovi or JASP. These are free and user
+friendly ways to do statistics. By the way, the tools I listed in this
+table are all free, except the BlueSky. It is worth installing and
+trying them.</p>
+<div id="base-r" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Base R</h2>
+<p>What components were installed with <em>Base R</em>? The <em>Base R</em> consists of
+three elements. The console for typing commands and getting results, the
+interpreter for evalueting the commands, and packages for extending R’s
+knowledge. The interpreter is the heart of the R, all commands will be
+executed by the interpreter. For the users, for us, the console is the
+key. Apart from point and click interfaces, we will interact with the
+console directly or indirectly.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<img src="img/baser.jpg" alt="Components of Base R" width="70%" />
+<p class="caption">
+Figure 1.4: Components of Base R
+</p>
+</div>
+<div id="console-of-base-r" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Console of Base R</h3>
+<p>As we mentioned, the R users meet the console all the time. One main
+part of <em>Base R</em> is the console. To start the console, we should type R
+(the capital R letter) on all systems, or we can find and click on the R
+icon. If you are on Windows, you can launch the <em>R.exe</em> (e.g.
+<code>c:\Program Files\R\R-4.0.4\bin\x64\R.exe</code>).</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
+<img src="img/console.jpg" alt="Console in Base R" width="70%" />
+<p class="caption">
+Figure 1.5: Console in Base R
+</p>
+</div>
+<p>On the screen above, you can see some information about the R instance.
+At the bottom of the console window there is a prompt. It consits of a
+‘greater than’ sign (symbol) and a space, and of course a cursor where
+you can type any character. Let’s practise together.</p>
+<p>Let’s type any character, delete characters with <kbd>Delete</kbd> and
+<kbd>Backspace</kbd> keys, move the cursor with <kbd>Left arrow</kbd>
+and <kbd>Right arrow</kbd> keys, insert any character in this position,
+and navigate the cursor the beginning of the line and the end of the
+line with the <kbd>Home</kbd> and <kbd>End</kbd> keys.</p>
+<p>If we are ready, we can execute this line, the commad, hitting
+<kbd>Enter</kbd>.</p>
+<p>If the command is valid, R or more precisely its interpreter, will
+execute it, then it returns the result in the console. If the command in
+not valid, the interpreter returns an error message.</p>
+<p>Let’s start with numbers. Type 45 and hit <kbd>Enter</kbd>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="backgroud.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">45</span></span>
+<span id="cb1-2"><a href="backgroud.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 45</span></span></code></pre></div>
+<p>This is a valid command because there is no error message. But the
+result, the output, is meaningless.</p>
+<p>Let’s choose a more complicated expression:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="backgroud.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">45</span> <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb2-2"><a href="backgroud.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 50</span></span></code></pre></div>
+<p>Fortyfive plus five sums fifty, so fifty is displayed in the output. The
+1 in brackets at the beginning of the output means this is the first
+line of the output.</p>
+<div id="console-features" class="section level4" number="1.1.1.1">
+<h4><span class="header-section-number">1.1.1.1</span> Console features</h4>
+<p>Every console has three features, that help us to execute commands.</p>
+<dl>
+<dt>History of commands</dt>
+<dd><p>We can use the <kbd>Up arrow</kbd> and <kbd>Down arrow</kbd> keys to
+browse the history of commands, which we typed earlier. When you
+press the <kbd>Up arrow</kbd>, you get the commands you typed
+earlier at the command line. Of course you can modify them as well.
+You can hit <kbd>Enter</kbd> at any time to run the command that is
+currently displayed.</p>
+</dd>
+<dt>Autocompletion</dt>
+<dd><p>Pressing <kbd>TAB</kbd> key completes the keyword or directory path
+we were currently typing. Type in <code>getw</code> hit <kbd>TAB</kbd> and you
+can see the whole function call, hitting <kbd>Enter</kbd>, you can
+get the working directory.</p>
+</dd>
+<dt>Continue prompt</dt>
+<dd><p>Lets’s have a look at a small example. Tpye <code>45 -</code>(fortyfive minus)
+and hit <kbd>Enter</kbd>. This is an invalid command, but we can not
+see any Error message. Instead, a new prompt has appeared, a
+continuation prompt indicated by a <code>+</code> (plus) followed by a space
+character. We can continue typing. The console allows us to complete
+the command. It’s easy, type for example <code>5</code> (five), hit
+<kbd>Enter</kbd>. We can get the result. I’ll show you another
+example. Type <code>getwd(</code> without closing parenthesis, hit
+<kbd>Enter</kbd>. We will get the continuation prompt, and typing
+closing parenthesis we get the working directory. It seems to help
+us. Continuation prompt seems to be a good thing. But, It is not. It is
+a really confusing feature. We can easely find ourselves in a never
+ending story. We can type <code>45 -</code>, <kbd>Enter</kbd>, <code>11 *</code>,
+<kbd>Enter</kbd> and so on, we keep getting the continuation prompt, and
+we don’t really know how to complete it in a right way. So, It is
+very important to leave the continuation prompt as soon as possible. The
+key is <kbd>Esc</kbd> button. Lets’ try this. Type in opening
+parenthesis and 6 (<code>(6</code>), hit <kbd>Enter</kbd>, and press
+<kbd>Esc</kbd>. We can get back the prompt ‘greater than’ (<code>&gt;</code>),
+this is defalt prompt. When you see the plus prompt, continuation
+prompt, you must press the <kbd>Esc</kbd> key.</p>
+</dd>
+</dl>
+</div>
+<div id="working-directory" class="section level4" number="1.1.1.2">
+<h4><span class="header-section-number">1.1.1.2</span> Working directory</h4>
+<p>In R, we answer the questions we face using functions. So, the
+expressions that we type into the command line, usually contains
+<em>function calls</em>. So, now, we can request the working directroy. Let’s
+type <code>getwd()</code> to get the interpreter to display our working directory.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="backgroud.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<p>Working directory is the defalut directory that our command line reaches
+to access files if we don’t specify a path ourselves. We can specify
+paths two ways either absolutely from the root directory or relatively
+starting from our working directory. Beside reaching our histrory in the
+command line we can also rely on the help of a built-in autocompletion
+feautre, by pressing <kbd>TAB</kbd> key, which completes the keyword or
+directory path we were currently typing.</p>
+<p>For example, let’s type only <code>set</code> and press <kbd>TAB</kbd> and
+<kbd>TAB</kbd> again to list out all the commands that start with <code>set</code>.
+Press <code>w</code> and press <kbd>TAB</kbd> again, and as you can see the command
+line completes our command with a <code>d</code> to get an existing function name.
+All function call requires parentheses after the function name, which
+contains additional data for the function which we call arguments.</p>
+<p>The <code>setwd()</code> function has only one required arguments, which is a path
+to a directory, which we want to set as our new working directory.</p>
+<p>Let’s try calling the <code>setwd()</code> function, start with the function name,
+then the opening parenthesis and inside quote marks we give the
+directory’s path.</p>
+<p>On Windows, after the first quote mark, type <code>c:/</code>, which refers the
+drive you want to use, and press <kbd>TAB</kbd> twice to see all
+subdirectories and files on the drive.</p>
+<p>From here we can build our path diretory by directory till we reach the
+directory which we want to set as our working directory. As you can see
+when jumping from directory into another we mark this jump with the
+slash character. Instead of writing out the path ourselves we can write
+the first few characters of directory’s name and we can rely on
+<kbd>TAB</kbd> to autocomplet it for us. Of course with more common
+directory names we have to be more specific to get the desired
+autocompletions.</p>
+<p>Finally, if we reached our desired new working directory, we can execute
+the command, by pressing enter, but make sure you have both your opening
+and closing quote marks and parenthesis. If you had, your command
+executed successfully thereby changing your working directory, but if
+you made a mistake either in the formality of the command (called
+syntactic error) or by giving a path to a directory which dosen’t exsist
+(called semantic error).</p>
+<p>To sum up, to set a working directory in R type:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="backgroud.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;Path/To/Your/Workingdirectory&quot;</span>)</span></code></pre></div>
+<p>If you need to check which working directory R thinks it is in:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="backgroud.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+</div>
+<div id="quit-the-console" class="section level4" number="1.1.1.3">
+<h4><span class="header-section-number">1.1.1.3</span> Quit the console</h4>
+<p>In the end, let’s quit the console, by typing and executing the <code>q()</code>
+command. Don’t forget the parentheses. We don’t need to save the
+workspace. Choose <code>No</code>.</p>
+</div>
+</div>
+<div id="rgui-on-windows" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> RGui on Windows</h3>
+<p>On Windows operating system, <em>Base R</em> has another console which is more
+advanced. The <em>RGui</em> has a graphical user interface. To start it, find
+and clilck on the R icon. You should always use the latest version and
+the 64 bit version.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
+<img src="img/rgui.jpg" alt="Console in RGui" width="70%" />
+<p class="caption">
+Figure 1.6: Console in RGui
+</p>
+</div>
+<p>Let’s start up the afformentioned 64 bit version of it. Above you can
+see our console wich in functionality is the same as the one we used in
+<em>Base R</em> recently. We can type any character and press <kbd>Enter</kbd>.</p>
+<p>If you’d like to change the apperance, or the size of the console, you
+can do so in the <code>Edit &gt; GUI preferences</code> menu in the upper menu bar.
+Let’s choose this menu item, and increase the font size to 28 and set
+the style to bold. Close this dialog box with <code>OK</code> button, and you can
+see a more readable console window. But as you can see we also have menu
+and tool bar.</p>
+<p>Let’s try the same basic aritmethic command here. Type <code>45 + 5</code> and
+press <kbd>Enter</kbd> to execute it. And as we can see we get the same
+result here.</p>
+<p>Let’s try the history with the <kbd>Up arrow</kbd> and <kbd>Down
+arrow</kbd>. Navigate the cursor with <kbd>Left arrow</kbd> and
+<kbd>Right arrow</kbd> keys, use the <kbd>Home</kbd> and <kbd>End</kbd>
+buttons, insert or delete any character and press <kbd>Enter</kbd>.</p>
+<div id="scripting-in-rgui" class="section level4" number="1.1.2.1">
+<h4><span class="header-section-number">1.1.2.1</span> Scripting in RGui</h4>
+<p><em>RGui</em> has all the functions the Console of <em>Base R</em> had, and also a new
+one. We can create script files with which we can use to store commands
+in text files. Script files makes easy to store and organize commands.
+So let’s click <code>File &gt; New script</code> which will make us a new script
+window where you can edit your script file.  We can arrange the Console
+and Script windows, click on the <code>Windows &gt; Tile horizontaly</code><strong>.</strong> You
+can find the typical face of <em>RGui</em> below.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
+<img src="img/rgui_script.jpg" alt="Console in RGui" width="70%" />
+<p class="caption">
+Figure 1.7: Console in RGui
+</p>
+</div>
+<p>Let’s write the two commands in to this script file: <code>45 + 5</code> and
+<code>getwd()</code>.</p>
+<p>Here we only type out command, to actually execute them we will need to
+transfer them to the console. This window is only a text editor through
+which we edit our script file. Here we can only use basic notepad like
+functonalities, so no autocomplition or history.</p>
+<p>We can move in a line with the <kbd>Home</kbd> and <kbd>End</kbd>
+buttons and through lines with the <kbd>Page Up</kbd> and <kbd>Page
+Down</kbd> buttons. With <kbd>Ctrl+Home</kbd> we can get to the
+beginning of the script file and with <kbd>Ctrl+End</kbd> we can get to
+the bottom of it. Of course, this comes handy with much larger script
+files.</p>
+<p>We can mark parts of the text with either holding the <kbd>Shift</kbd>
+key and using the <kbd>Left-Right-Up-Down arrow</kbd> keys or using the
+mouse. And we can use the clipboard as well, <kbd>Ctrl+C</kbd>,
+<kbd>Ctrl+X</kbd> and <kbd>Ctrl+V</kbd>.</p>
+<p>It’s important to know how to actually execute the commands we just
+wrote into our script file. With <kbd>Ctrl+R</kbd> we can execute the
+line that our cursor is currently at. The process consists of the
+command getting pulled into the console and then it executing it.</p>
+<p>Let’s try it together. Move the cursor into the first line. Click in the
+first line anywhere. Then press the <kbd>Ctrl+R</kbd>. Three things
+happened at he same time. The first line was pulled into the console,
+the line was executed, and the cursor jumped down a line. We can repress
+the <kbd>Ctrl+R</kbd> and repeat the whole process for the second line.
+And so on.</p>
+<p>If you have any text selected in your editor prior, pressing
+<kbd>Ctrl+R</kbd>, then the selected text will be executed. Let’s also
+try this. Select only <code>5 + 5</code> from the first line, and press
+<kbd>Ctrl+R</kbd>, and you get 10. Then, select the first two lines and
+execute them with <kbd>Ctrl+R</kbd>. The interpreter ran both lines. You
+can see the result in the console.</p>
+<p>As you might have noticed, we have a colored console, the inputs, the
+commands colored by red, and the outputs, the results colored by blue.</p>
+<p>This script files can also contain comments, which is usefull to mark
+what’s the command’s intention. Which ones again may seem unimportant
+now, but is really usefull when working with massive script files.</p>
+<p>To mark something as a comment use the hash mark (<code>#</code>) which marks
+everything in a line after the hash mark as a comment. It’s good
+practice to start your script file with 3 comment lines which containes
+the author of the file, the date and a name which gives some kind of
+information about what the script does. </p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="backgroud.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kálmán Abari</span></span>
+<span id="cb6-2"><a href="backgroud.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2021-03-17</span></span>
+<span id="cb6-3"><a href="backgroud.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># First script file</span></span></code></pre></div>
+<p>Let’s try it together. Navigate the cursor to the first position of the
+file, for example pressing the <kbd>Ctrl+Home</kbd>. Then type a hash
+mark, and your name, <kbd>Enter</kbd>. Hash mark, date of today,
+<kbd>Enter</kbd>, hash mark <code>First script file</code>, <kbd>Enter</kbd>.</p>
+<p>If we are ready, we are going to save the script file. It’s important to
+save the script file with the file menu’s save option. It’s good
+practice to save your work every 15 minutes. It’s important that when we
+save our files we give them names that doesn’t contain any special
+characters or whitespaces, underscores are accpetable though. Choose a
+proper directroy and type in <code>first_script.R</code> as the filename. Make sure
+that our file’s extension should be <code>.R</code> which means that it contains an
+R script file.</p>
+<p>With that we covered the basics of the <em>RGui</em>, so we can close it for
+now, we shouldn’t worry about saving our workspace since we won’t be
+needing it.</p>
+</div>
+</div>
+</div>
+<div id="rstudio" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> RStudio</h2>
+<p>The last tool we will get to know now and will be using for the rest of
+the book is <em>RStudio</em>. We can also launch it from the start menu. While
+we had multiple <em>Basic R</em> instances, we only have one <em>RStudio</em>, so it
+should be easy to find it.</p>
+<p>It’s the most advanced interface to use R from the afformentioned ones.
+And this will be the one that we will mainly use through out the course.
+Even though we will only use RStudio, it’s important to mention that
+RStudio relies on Base R to work.</p>
+<p>We can easily check which instance of Base R our Rstudio is using. We
+can see this in the <strong>Global options</strong> menu under the <strong>Tools</strong> menu bar
+option.</p>
+<p>Let’s check if it really is using the 64 (sixtyfour) bit version.</p>
+<p>Here we can also do other customizations. While we’re here we should
+also uncheck the <strong>Restore .Rdata option</strong> and set the <strong>Save workspace
+to Rdata on exit option</strong> to never.</p>
+<p>Another important one is the <strong>Code</strong> menu point from the left list.
+Here under the <strong>Saving option</strong> we have to set the <strong>default text
+encoding</strong> to UTF-8 which is a wildily used and accepted character-code
+standard.</p>
+<p>You can customize to look of your editor under the Apperance option.
+Here you can change the theme of your editor, which is sets the color
+palette it uses. I recommend changing it to <strong>Tomorrow night bright</strong>.
+Let’s close the settings, by pressing OK, to save the changes we made.</p>
+<p>A few words about RStudio. The main area consists of 3 or 4 different
+panes or windows which all are responsible for a different task. You
+have 3 panes by basic. The fourth panes you can add is a script file
+editor, the source pane.</p>
+<p>Which you can do by creating a new script file in <strong>file</strong> – <strong>new
+file</strong> – RScript.</p>
+<p>You can easily resize the panes with clicking and dragging the vertical
+or horizontal line between the panes.</p>
+<p>A left top, you find your script file editor. At left bottom there’s
+your console. At the right top is your enviroment. Which containes
+objects we created and their properties. For now it should be empty.
+Let’s also watch out for the fact that these panes have multiple tabs on
+them. This panes also contains the history tab which is another way for
+us to access our command history.</p>
+<p>The right bottom pane’s <strong>Files</strong> tab lists our working directory and
+its content. The <strong>plots</strong> tab houses user created diagrams.</p>
+<p>Today we’ll set our focus on the panes on the left.</p>
+<p>Let’s put a basic addition, subtraction, multiplication, divison and an
+extra expression, an exponentiation [eksponesiéisön] (exponent), into
+our editor on the top left.  We use plus, minus, asterisk, slah and
+double asterisks or hat symbols. So basically double asterisk **
+behaves exactly like ^ (hat, caret), these are <strong>to-the-power-of</strong> ,
+exponent operators.</p>
+<p>45 + 5 enter</p>
+<p>45 – 5 enter</p>
+<p> </p>
+<p>We can use decimals, for example zero point five, zero point three
+three.</p>
+<p>45 * 0.5 (fortyfive multiplied by zero point five)</p>
+<p>45 / 0.33  (fortyfive devided by zero point five)</p>
+<p>We need to use the whole number, decimal point and decimal places
+(tenth, one-tenth, one hundredth, one thousends).</p>
+<p>45 ** 3 forty five cubed, forty five to the power of 3</p>
+<p>45 ^ 3 forty five cubed again, using hat symbol (usually we type Alt Gr
++ 3 keys than a space. It is not easy to write out, so we can use the
+double asterik.)</p>
+<p> </p>
+<p>Let’s set the cursor on the first line a press <strong>Ctrl+Enter</strong> and see
+what happens. As in Rgui with <strong>Ctrl+R</strong>, here in RStudio we use
+<strong>Ctrl+Enter</strong> to execute the line our cursor’s at. It does the same
+thing, copying our command to the console and executing it too. Pressing
+a new <strong>Ctrl+Enter</strong>  run all lines.</p>
+<p><strong>What makes RStudio more appealing?</strong> First, our lines are numbered
+which makes navigation and future bug fixing more easier. Our code is
+more easily readable because keywords with different functionality get
+coloured with different colors.</p>
+<p>Here we can use autocomplition even in the script editor. Typing
+<strong>getw</strong> you can choose the proper function, for example the <strong>getwd()</strong>
+function. Press Ctrl+Enter to get the working directory.</p>
+<p>When we work with longer script files, we can make bookmarks, which
+provide easy navigation to specific parts of our code. We can do so, by
+ending a comment line with 4 dashes.</p>
+<p>You can access these bookmarks and jump to the part of the code they
+mark by clicking <strong>this button on the rigth of the source pane</strong>, in the
+top right corner of your script editor.</p>
+<p>In R we can reference numbers by the base 10 system, the hexadecimal
+variation of it. We can use integers, decimals. And we can give numbers
+in exponential form which is a scientific notation, where the number
+after ‘e’ gives the powers of ten.</p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p>However as of now, the most current version of R is 4.0.4. And so I
+encourage you to install that version of R, which should be the default
+version that you find when you go to the R website. So I, in general,  I
+always encourage people to use the latest version of software because
+those will have the latest features and they will have hopefully fixed
+bugs that may have been present in earlier version.</p>
+<p>You won’t need them.</p>
+<p> </p>
+<blockquote>
+<p>Learning Objectives</p>
+<ul>
+<li>Be familiar with reasons to use R.</li>
+<li>Understand how R relates to RStudio.</li>
+<li>Be able to navigate the RStudio interface including the Script,
+Console, Environment, Help, Files, and Plots windows.</li>
+<li>Create an R Project in RStudio.</li>
+<li>Set a “working” directory.</li>
+<li>Send commands from the Script window to the Console in RStudio.</li>
+</ul>
+</blockquote>
+<hr />
+</div>
+<div id="what-is-r-what-is-rstudio" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> What is R? What is RStudio?</h2>
+<p>The term “R” is used to refer to both the programming language to write
+scripts and the software (“environment”) that interprets the scripts
+written in R. It is an alternative to statistical packages like SAS,
+SPSS, or Stata, which lets you perform a wide variety of data analysis,
+statistics, and visualization.</p>
+<p>RStudio is currently a very popular way to not only write your R scripts
+but also to interact with the R software. To function correctly, RStudio
+needs R and therefore both need to be installed on your computer.</p>
+</div>
+<div id="why-learn-r" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Why learn R?</h2>
+<div id="r-does-not-involve-lots-of-pointing-and-clicking-and-thats-a-good-thing" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> R does not involve lots of pointing and clicking, and that’s a good thing</h3>
+<p>The learning curve might be steeper than with other software, but with
+R, the results of your analysis does not rely on remembering a
+succession of pointing and clicking, but instead on a series of written
+commands, and that’s a good thing! So, if you want to redo your analysis
+because you collected more data, you don’t have to remember which button
+you clicked in which order to obtain your results, you just have to run
+your script again.</p>
+<p>Working with scripts makes the steps you used in your analysis clear,
+and the code you write can be inspected by someone else who can give you
+feedback and spot mistakes.</p>
+<p>Working with scripts forces you to have a deeper understanding of what
+you are doing, and facilitates your learning and comprehension of the
+methods you use.</p>
+</div>
+<div id="r-code-is-great-for-reproducibility" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> R code is great for reproducibility</h3>
+<p>Reproducibility is when someone else (including your future self) can
+obtain the same results from the same dataset when using the same
+analysis.</p>
+<p>R integrates with other tools to generate manuscripts from your code. If
+you collect more data, or fix a mistake in your dataset, the figures and
+the statistical tests in your manuscript are updated automatically.</p>
+<p>An increasing number of journals and funding agencies expect analyses to
+be reproducible, so knowing R will give you an edge with these
+requirements.</p>
+</div>
+<div id="r-is-interdisciplinary-and-extensible" class="section level3" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> R is interdisciplinary and extensible</h3>
+<p>With 10,000+ packages that can be installed to extend its capabilities,
+R provides a framework that allows you to combine statistical approaches
+from many scientific disciplines to best suit the analytical framework
+you need to analyze your data. For instance, R has packages for image
+analysis, mapping, time series, text mining, and a lot more.</p>
+</div>
+<div id="r-works-on-data-of-all-shapes-and-sizes" class="section level3" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> R works on data of all shapes and sizes</h3>
+<p>The skills you learn with R scale easily with the size of your dataset.
+Whether your dataset has hundreds or millions of lines, it won’t make
+much difference to you.</p>
+<p>R is designed for data analysis. It comes with special data structures
+and data types that make handling of missing data and statistical
+factors convenient.</p>
+<p>R can connect to spreadsheets, databases, and many other data formats,
+on your computer or on the web.</p>
+</div>
+<div id="r-produces-high-quality-graphics" class="section level3" number="1.4.5">
+<h3><span class="header-section-number">1.4.5</span> R produces high-quality graphics</h3>
+<p>The plotting functionalities in R are endless, and allow you to adjust
+any aspect of your graph to convey most effectively the message from
+your data.</p>
+</div>
+<div id="r-has-a-large-community" class="section level3" number="1.4.6">
+<h3><span class="header-section-number">1.4.6</span> R has a large community</h3>
+<p>Thousands of people use R daily. Many of them are willing to help you
+through mailing lists and websites such as <a href="https://stackoverflow.com/questions/tagged/r">Stack
+Overflow</a>.</p>
+</div>
+<div id="not-only-is-r-free-but-it-is-also-open-source-and-cross-platform" class="section level3" number="1.4.7">
+<h3><span class="header-section-number">1.4.7</span> Not only is R free, but it is also open-source and cross-platform</h3>
+<p>Anyone can inspect the source code to see how R works. Because of this
+transparency, there is less chance for mistakes, and if you (or someone
+else) find some, you can report and fix bugs.</p>
+</div>
+</div>
+<div id="knowing-your-way-around-rstudio" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Knowing your way around RStudio</h2>
+<p>Let’s start by learning about <a href="https://www.rstudio.com/">RStudio</a>, which
+is an Integrated Development Environment (IDE) for working with R.</p>
+<p>The RStudio IDE open-source product is free under the <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">Affero General
+Public License (AGPL)
+v3</a>. The RStudio IDE is
+also available with a commercial license and priority email support from
+RStudio, Inc.</p>
+<p>We will use RStudio IDE to write code, navigate the files on our
+computer, inspect the variables we are going to create, and visualize
+the plots we will generate. RStudio can also be used for other things
+(e.g., version control, developing packages, writing Shiny apps) that we
+will not cover during the workshop.</p>
+<div class="figure"><span id="fig:RStudio-GUI"></span>
+<img src="img/rstudio-screenshot.png" alt="The RStudio Interface" width="100%" />
+<p class="caption">
+Figure 1.8: The RStudio Interface
+</p>
+</div>
+<p>RStudio is divided into 4 “Panes”:</p>
+<ul>
+<li>the <strong>Source</strong> for your scripts and documents (top-left, in the
+default layout),</li>
+<li>the R <strong>Console</strong> (bottom-left),</li>
+<li>your <strong>Environment/History</strong> (top-right), and</li>
+<li>your <strong>Files/Plots/Packages/Help/Viewer</strong> (bottom-right).</li>
+</ul>
+<p>The placement of these panes and their content can be customized (see
+main Menu, Tools -&gt; Global Options -&gt; Pane Layout). One of the
+advantages of using RStudio is that all the information you need to
+write code is available in a single window.</p>
+</div>
+<div id="how-to-start-an-r-project" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> How to start an R project</h2>
+<p>It is good practice to keep a set of related data, analyses, and text
+self-contained in a single folder. When working with R and RStudio you
+typically want that single top folder to be the folder you are working
+in. In order to tell R this, you will want to set that folder as your
+<strong>working directory</strong>. Whenever you refer to other scripts or data or
+directories contained within the working directory you can then use
+<em>relative paths</em> to files that indicate where inside the project a file
+is located. (That is opposed to absolute paths, which point to where a
+file is on a specific computer). Having everything contained in a single
+directory makes it a lot easier to move your project around on your
+computer and share it with others without worrying about whether or not
+the underlying scripts will still work.</p>
+<p>Whenever you create a project with RStudio it creates a working
+directory for you and remembers its location (allowing you to quickly
+navigate to it) and optionally preserves custom settings and open files
+to make it easier to resume work after a break. Below, we will go
+through the steps for creating an “R Project” for this workshop.</p>
+<ul>
+<li>Start RStudio</li>
+<li>Under the <code>File</code> menu, click on <code>New project</code>, choose
+<code>New directory</code>, then <code>Empty project</code></li>
+<li>As directory (or folder) name enter <code>r-intro</code> and create project as
+subdirecory of your desktop folder: <code>~/Desktop</code></li>
+<li>Click on <code>Create project</code></li>
+<li>Under the <code>Files</code> tab on the right of the screen, click on
+<code>New Folder</code> and create a folder named <code>data</code> within your newly
+created working directory (e.g., <code>~/r-intro/data</code>)</li>
+<li>On the main menu go to <code>Files</code> &gt; <code>New File</code> &gt; <code>R Script</code> (or use
+the shortcut <kbd><code>Shift</code></kbd> + <kbd><code>Cmd</code></kbd> + <kbd><code>N</code></kbd>)
+to open a new file</li>
+<li>Save the empty script as <code>r-intro-script.R</code> in your working
+directory.</li>
+</ul>
+<p>Your working directory should now look like in Figure
+<a href="backgroud.html#fig:working-dir">1.9</a>.</p>
+<div class="figure"><span id="fig:working-dir"></span>
+<img src="img/Rproject-setup.png" alt="What it should look like at the beginning of this lesson" width="60%" />
+<p class="caption">
+Figure 1.9: What it should look like at the beginning of this lesson
+</p>
+</div>
+<p>If you ever need to set a different working directory you can use the
+RStudio interface like seen in Figure <a href="backgroud.html#fig:set-working-dir">1.10</a>.</p>
+<div class="figure"><span id="fig:set-working-dir"></span>
+<img src="img/setWD.png" alt="How to set a working directory with the RStudio interface" width="60%" />
+<p class="caption">
+Figure 1.10: How to set a working directory with the RStudio interface
+</p>
+</div>
+<p>Alternatively, you can use the shortcut <kbd>Ctrl + Shift + H</kbd> to
+set a working directory in RStudio.</p>
+<div id="organizing-your-working-directory" class="section level3" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> Organizing your working directory</h3>
+<p>Using a consistent folder structure across your projects will help keep
+things organized, and will also make it easy to find/file things in the
+future. This can be especially helpful when you have multiple projects.
+In general, you may create directories (folders) for <strong>scripts</strong>,
+<strong>data</strong>, and <strong>documents</strong>.</p>
+<ul>
+<li><strong><code>data/</code></strong> Use this folder to store your raw data and intermediate
+datasets you may create for the need of a particular analysis. For
+the sake of transparency and
+<a href="https://en.wikipedia.org/wiki/Provenance">provenance</a>, you should
+<em>always</em> keep a copy of your raw data accessible and do as much of
+your data cleanup and preprocessing programmatically (i.e., with
+scripts, rather than manually) as possible. Separating raw data from
+processed data is also a good idea. For example, you could have
+subfolders in your <code>data</code> directory named <code>data/raw/</code> and
+<code>data/processed</code> that woudl contain the respective raw and processed
+files. I also like to log my data processing steps in a simple
+textfile that I keep there as well.</li>
+<li><strong><code>documents/</code></strong> If you are wroking on a paper this would be a place
+to keep outlines, drafts, and other text.</li>
+<li><strong><code>scripts/</code></strong> This would be the location to keep your R scripts.
+Again, depending on the complexity, you may want to add subfolders
+that contain, for example all the plotting scripts, or all the datas
+cleaning scripts.</li>
+</ul>
+<p>You may want additional directories or subdirectories depending on your
+project needs, but this is a good template to form the backbone of your
+working directory.</p>
+</div>
+</div>
+<div id="interacting-with-r" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> Interacting with R</h2>
+<p>The basis of programming is that we write down instructions for the
+computer to follow, and then we tell the computer to follow those
+instructions. We write, or <em>code</em>, instructions in R because it is a
+common language that both the computer and we can understand. We call
+the instructions <em>commands</em> and we tell the computer to follow the
+instructions by <em>executing</em> (also called <em>running</em>) those commands.</p>
+<p>There are two main ways of interacting with R: by using the <strong>console</strong>
+or by using <strong>script files</strong> (plain text files that contain your code).</p>
+<div id="rstudio-console-and-command-prompt" class="section level3" number="1.7.1">
+<h3><span class="header-section-number">1.7.1</span> RStudio Console and Command Prompt</h3>
+<p>The console pane in RStudio is the place where commands written in the R
+language can be typed and executed immediately by the computer. It is
+also where the results will be shown for commands that have been
+executed. You can type commands directly into the console and press
+<kbd>Enter</kbd> to execute those commands, but they will be forgotten
+when you close the session.</p>
+<p>If R is ready to accept commands, the R console by default shows a <code>&gt;</code>
+prompt. If it receives a command (by typing, copy-pasting or sent from
+the script editor using <kbd>Ctrl Enter</kbd>), R will try to execute
+it, and when ready, will show the results and come back with a new <code>&gt;</code>
+prompt to wait for new commands.</p>
+<p>If R is still waiting for you to enter more data because it isn’t
+complete yet, the console will show a <code>+</code> prompt. It means that you
+haven’t finished entering a complete command. This is because you have
+not ‘closed’ a parenthesis or quotation, i.e. you don’t have the same
+number of left-parentheses as right-parentheses, or the same number of
+opening and closing quotation marks. When this happens, and you thought
+you finished typing your command, click inside the console window and
+press <kbd>Esc</kbd>; this will cancel the incomplete command and return
+you to the <code>&gt;</code> prompt.</p>
+<dl>
+<dt>sfsdfsfsfsf</dt>
+<dd><p>rwrwrwrwr</p>
+</dd>
+<dt>werwerwer</dt>
+<dd><p>werwerwrwerwer</p>
+</dd>
+</dl>
+</div>
+</div>
+<div id="quarterly-results" class="section level2 tabset" number="1.8">
+<h2><span class="header-section-number">1.8</span> Quarterly Results</h2>
+<div id="by-product" class="section level3" number="1.8.1">
+<h3><span class="header-section-number">1.8.1</span> By Product</h3>
+<p>1212121212121</p>
+</div>
+<div id="by-region" class="section level3" number="1.8.2">
+<h3><span class="header-section-number">1.8.2</span> By Region</h3>
+<p>56565656565</p>
+<blockquote>
+<h3>
+<p>Challenge</p>
+</h3>
+<ul>
+<li>Use R to determine what your working directory is.</li>
+<li>Use R to change your working directory to some other place. What
+do you notice in the RStudio Files window?</li>
+<li>Use RStudio to change back to your previous working directory
+(r-intro) What do you notice in the RStudio Console?</li>
+</ul>
+</blockquote>
+</div>
+<div id="rstudio-script-editor" class="section level3" number="1.8.3">
+<h3><span class="header-section-number">1.8.3</span> RStudio Script Editor</h3>
+<p>Because we want to keep our code and workflow, it is better to type the
+commands we want in the script editor, and save the script. This way,
+there is a complete record of what we did, and anyone (including our
+future selves!) can easily replicate the results on their computer.</p>
+<p>Perhaps one of the most important aspects of making your code
+comprehensible for others and your future self is adding comments about
+why you did something. You can write comments directly in your script,
+and tell R not no execute those words simply by putting a hashtag (<code>#</code>)
+before you start typing the comment.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="backgroud.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is a comment on its on line</span></span>
+<span id="cb7-2"><a href="backgroud.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>() <span class="co"># comments can also go here</span></span></code></pre></div>
+<p>One of the first things you will notice is in the R script editor that
+your code is colored (syntax coloring) which enhances readibility.</p>
+<p>Secondly, RStudio allows you to execute commands directly from the
+script editor by using the <kbd>Ctrl + Enter</kbd> shortcut (on Macs,
+<kbd>Cmd + Enter</kbd> will work, too). The command on the current line
+in the script (indicated by the cursor) or all of the commands in the
+currently selected text will be sent to the console and executed when
+you press <kbd>Ctrl + Enter</kbd>. You can find other keyboard shortcuts
+under <code>Tools</code> &gt; <code>Keyboard Shortcuts Help</code> (or <kbd><code>Alt</code></kbd> +
+<kbd><code>Shift</code></kbd> + <kbd><code>K</code></kbd>)</p>
+<p>At some point in your analysis you may want to check the content of a
+variable or the structure of an object, without necessarily keeping a
+record of it in your script. You can type these commands and execute
+them directly in the console. RStudio provides the <kbd>Ctrl + 1</kbd>
+and <kbd><code>Ctrl</code></kbd> + <kbd><code>2</code></kbd> shortcuts allow you to jump
+between the script and the console panes.</p>
+<p>In addition to shortcuts RStudio also provides autocompletion. If you
+begin typing a command or the name of a variable or (under certain
+conditions) even filenames you have on your latop and thenb hit the
+<kbd><code>Tab</code></kbd> key, it will make suggestions and relieve you from
+typing. More on code completion in RStudio is here:
+<a href="https://support.rstudio.com/hc/en-us/articles/205273297-Code-Completion" class="uri">https://support.rstudio.com/hc/en-us/articles/205273297-Code-Completion</a></p>
+<p>All in all, RStudio is designed to make your coding easier and less
+error-prone.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-r-language.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["basicr.pdf", "basicr.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

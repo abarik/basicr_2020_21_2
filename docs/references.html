@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>References | Basic R</title>
+  <meta name="description" content="Course materials for Basic R" />
+  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="References | Basic R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Course materials for Basic R" />
+  <meta name="github-repo" content="abarik/basicr_2020_21_2" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="References | Basic R" />
+  
+  <meta name="twitter:description" content="Course materials for Basic R" />
+  
+
+<meta name="author" content="Kálmán Abari" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="miscellaneous.html"/>
+
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Basic R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#setup-instructions"><i class="fa fa-check"></i>Setup Instructions</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#windows"><i class="fa fa-check"></i>Windows</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#macos"><i class="fa fa-check"></i>macOS</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#linux"><i class="fa fa-check"></i>Linux</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="how-to-use-r.html"><a href="how-to-use-r.html"><i class="fa fa-check"></i><b>1</b> How to use R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="how-to-use-r.html"><a href="how-to-use-r.html#base-r"><i class="fa fa-check"></i><b>1.1</b> Base R</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="how-to-use-r.html"><a href="how-to-use-r.html#console-of-base-r"><i class="fa fa-check"></i><b>1.1.1</b> Console of Base R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="how-to-use-r.html"><a href="how-to-use-r.html#rgui-on-windows"><i class="fa fa-check"></i><b>1.1.2</b> RGui on Windows</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="how-to-use-r.html"><a href="how-to-use-r.html#rstudio"><i class="fa fa-check"></i><b>1.2</b> RStudio</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="how-to-use-r.html"><a href="how-to-use-r.html#customization"><i class="fa fa-check"></i><b>1.2.1</b> Customization</a></li>
+<li class="chapter" data-level="1.2.2" data-path="how-to-use-r.html"><a href="how-to-use-r.html#using-rstudio"><i class="fa fa-check"></i><b>1.2.2</b> Using RStudio</a></li>
+<li class="chapter" data-level="1.2.3" data-path="how-to-use-r.html"><a href="how-to-use-r.html#how-to-start-an-r-project"><i class="fa fa-check"></i><b>1.2.3</b> How to start an R project</a></li>
+<li class="chapter" data-level="1.2.4" data-path="how-to-use-r.html"><a href="how-to-use-r.html#organizing-your-working-directory"><i class="fa fa-check"></i><b>1.2.4</b> Organizing your working directory</a></li>
+<li class="chapter" data-level="1.2.5" data-path="how-to-use-r.html"><a href="how-to-use-r.html#rstudio-console-and-command-prompt"><i class="fa fa-check"></i><b>1.2.5</b> RStudio Console and Command Prompt</a></li>
+<li class="chapter" data-level="1.2.6" data-path="how-to-use-r.html"><a href="how-to-use-r.html#rstudio-script-editor"><i class="fa fa-check"></i><b>1.2.6</b> RStudio Script Editor</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="how-to-use-r.html"><a href="how-to-use-r.html#rmarkdown"><i class="fa fa-check"></i><b>1.3</b> RMarkdown</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="how-to-use-r.html"><a href="how-to-use-r.html#introduction"><i class="fa fa-check"></i><b>1.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.3.2" data-path="how-to-use-r.html"><a href="how-to-use-r.html#basic-structure-of-r-markdown"><i class="fa fa-check"></i><b>1.3.2</b> Basic Structure of R Markdown</a></li>
+<li class="chapter" data-level="1.3.3" data-path="how-to-use-r.html"><a href="how-to-use-r.html#text-formatting-with-r-markdown"><i class="fa fa-check"></i><b>1.3.3</b> Text Formatting with R Markdown</a></li>
+<li class="chapter" data-level="1.3.4" data-path="how-to-use-r.html"><a href="how-to-use-r.html#math-expressions"><i class="fa fa-check"></i><b>1.3.4</b> Math expressions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="the-r-language.html"><a href="the-r-language.html"><i class="fa fa-check"></i><b>2</b> The R language</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="the-r-language.html"><a href="the-r-language.html#basic-data-type"><i class="fa fa-check"></i><b>2.1</b> Basic data type</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="the-r-language.html"><a href="the-r-language.html#double"><i class="fa fa-check"></i><b>2.1.1</b> Double</a></li>
+<li class="chapter" data-level="2.1.2" data-path="the-r-language.html"><a href="the-r-language.html#integer"><i class="fa fa-check"></i><b>2.1.2</b> Integer</a></li>
+<li class="chapter" data-level="2.1.3" data-path="the-r-language.html"><a href="the-r-language.html#characters"><i class="fa fa-check"></i><b>2.1.3</b> Characters</a></li>
+<li class="chapter" data-level="2.1.4" data-path="the-r-language.html"><a href="the-r-language.html#logical"><i class="fa fa-check"></i><b>2.1.4</b> Logical</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="the-r-language.html"><a href="the-r-language.html#operators"><i class="fa fa-check"></i><b>2.2</b> Operators</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="the-r-language.html"><a href="the-r-language.html#arithmetic-operators"><i class="fa fa-check"></i><b>2.2.1</b> Arithmetic operators</a></li>
+<li class="chapter" data-level="2.2.2" data-path="the-r-language.html"><a href="the-r-language.html#logical-operators"><i class="fa fa-check"></i><b>2.2.2</b> Logical operators</a></li>
+<li class="chapter" data-level="2.2.3" data-path="the-r-language.html"><a href="the-r-language.html#relational-operators"><i class="fa fa-check"></i><b>2.2.3</b> Relational operators</a></li>
+<li class="chapter" data-level="2.2.4" data-path="the-r-language.html"><a href="the-r-language.html#assignment-operators"><i class="fa fa-check"></i><b>2.2.4</b> Assignment operators</a></li>
+<li class="chapter" data-level="2.2.5" data-path="the-r-language.html"><a href="the-r-language.html#miscellaneous-operators"><i class="fa fa-check"></i><b>2.2.5</b> Miscellaneous operators</a></li>
+<li class="chapter" data-level="2.2.6" data-path="the-r-language.html"><a href="the-r-language.html#operator-precedence-in-r"><i class="fa fa-check"></i><b>2.2.6</b> Operator Precedence in R</a></li>
+<li class="chapter" data-level="2.2.7" data-path="the-r-language.html"><a href="the-r-language.html#binary-and-unary-operators"><i class="fa fa-check"></i><b>2.2.7</b> Binary and unary operators</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="the-r-language.html"><a href="the-r-language.html#objects"><i class="fa fa-check"></i><b>2.3</b> Objects</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="the-r-language.html"><a href="the-r-language.html#testing-the-type"><i class="fa fa-check"></i><b>2.3.1</b> Testing the type</a></li>
+<li class="chapter" data-level="2.3.2" data-path="the-r-language.html"><a href="the-r-language.html#coercion"><i class="fa fa-check"></i><b>2.3.2</b> Coercion</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="the-r-language.html"><a href="the-r-language.html#data-structures"><i class="fa fa-check"></i><b>2.4</b> Data structures</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="the-r-language.html"><a href="the-r-language.html#vectors"><i class="fa fa-check"></i><b>2.4.1</b> Vectors</a></li>
+<li class="chapter" data-level="2.4.2" data-path="the-r-language.html"><a href="the-r-language.html#factor"><i class="fa fa-check"></i><b>2.4.2</b> Factor</a></li>
+<li class="chapter" data-level="2.4.3" data-path="the-r-language.html"><a href="the-r-language.html#matrix"><i class="fa fa-check"></i><b>2.4.3</b> Matrix</a></li>
+<li class="chapter" data-level="2.4.4" data-path="the-r-language.html"><a href="the-r-language.html#array"><i class="fa fa-check"></i><b>2.4.4</b> Array</a></li>
+<li class="chapter" data-level="2.4.5" data-path="the-r-language.html"><a href="the-r-language.html#list"><i class="fa fa-check"></i><b>2.4.5</b> List</a></li>
+<li class="chapter" data-level="2.4.6" data-path="the-r-language.html"><a href="the-r-language.html#data-frame"><i class="fa fa-check"></i><b>2.4.6</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="the-r-language.html"><a href="the-r-language.html#functions"><i class="fa fa-check"></i><b>2.5</b> Functions</a></li>
+<li class="chapter" data-level="2.6" data-path="the-r-language.html"><a href="the-r-language.html#vectorized-operations"><i class="fa fa-check"></i><b>2.6</b> Vectorized operations</a></li>
+<li class="chapter" data-level="2.7" data-path="the-r-language.html"><a href="the-r-language.html#creating-date-sequences"><i class="fa fa-check"></i><b>2.7</b> Creating date sequences</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="the-r-language.html"><a href="the-r-language.html#creating-a-sequence-of-numeric-values"><i class="fa fa-check"></i><b>2.7.1</b> Creating a sequence of numeric values</a></li>
+<li class="chapter" data-level="2.7.2" data-path="the-r-language.html"><a href="the-r-language.html#creating-a-sequence-of-repeated-values"><i class="fa fa-check"></i><b>2.7.2</b> Creating a Sequence of Repeated Values</a></li>
+<li class="chapter" data-level="2.7.3" data-path="the-r-language.html"><a href="the-r-language.html#sequential-names"><i class="fa fa-check"></i><b>2.7.3</b> Sequential names</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="the-r-language.html"><a href="the-r-language.html#subsetting"><i class="fa fa-check"></i><b>2.8</b> Subsetting</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="the-r-language.html"><a href="the-r-language.html#subsetting-vector"><i class="fa fa-check"></i><b>2.8.1</b> Subsetting vector</a></li>
+<li class="chapter" data-level="2.8.2" data-path="the-r-language.html"><a href="the-r-language.html#subsetting-data-frames"><i class="fa fa-check"></i><b>2.8.2</b> Subsetting data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="the-r-language.html"><a href="the-r-language.html#string-data"><i class="fa fa-check"></i><b>2.9</b> String data</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="the-r-language.html"><a href="the-r-language.html#simple-character-manipulation"><i class="fa fa-check"></i><b>2.9.1</b> Simple Character Manipulation</a></li>
+<li class="chapter" data-level="2.9.2" data-path="the-r-language.html"><a href="the-r-language.html#searching-and-replacing"><i class="fa fa-check"></i><b>2.9.2</b> Searching and Replacing</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="the-r-language.html"><a href="the-r-language.html#packages-in-r"><i class="fa fa-check"></i><b>2.10</b> Packages in R</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="the-r-language.html"><a href="the-r-language.html#load-packages"><i class="fa fa-check"></i><b>2.10.1</b> Load packages</a></li>
+<li class="chapter" data-level="2.10.2" data-path="the-r-language.html"><a href="the-r-language.html#install-packages"><i class="fa fa-check"></i><b>2.10.2</b> Install packages</a></li>
+<li class="chapter" data-level="2.10.3" data-path="the-r-language.html"><a href="the-r-language.html#masking"><i class="fa fa-check"></i><b>2.10.3</b> Masking</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="the-r-language.html"><a href="the-r-language.html#internal-help"><i class="fa fa-check"></i><b>2.11</b> Internal help</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Getting started with a data analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#terminology"><i class="fa fa-check"></i><b>3.1</b> Terminology</a></li>
+<li class="chapter" data-level="3.2" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#read-and-write-data"><i class="fa fa-check"></i><b>3.2</b> Read and write data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#importing-data-from-a-delimited-text-file"><i class="fa fa-check"></i><b>3.2.1</b> Importing data from a delimited text file</a></li>
+<li class="chapter" data-level="3.2.2" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#importing-data-from-excel"><i class="fa fa-check"></i><b>3.2.2</b> Importing data from Excel</a></li>
+<li class="chapter" data-level="3.2.3" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#exporting-data-from-r"><i class="fa fa-check"></i><b>3.2.3</b> Exporting data from R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#data-manipulation"><i class="fa fa-check"></i><b>3.3</b> Data manipulation</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#get-information"><i class="fa fa-check"></i><b>3.3.1</b> Get information</a></li>
+<li class="chapter" data-level="3.3.2" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#data-type-conversions"><i class="fa fa-check"></i><b>3.3.2</b> Data type conversions</a></li>
+<li class="chapter" data-level="3.3.3" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#transformation"><i class="fa fa-check"></i><b>3.3.3</b> Transformation</a></li>
+<li class="chapter" data-level="3.3.4" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#identifying-and-treating-missing-values"><i class="fa fa-check"></i><b>3.3.4</b> Identifying and treating missing values</a></li>
+<li class="chapter" data-level="3.3.5" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#numeric-to-factor"><i class="fa fa-check"></i><b>3.3.5</b> Numeric to factor</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#descriptive-statistics"><i class="fa fa-check"></i><b>3.4</b> Descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#measurements"><i class="fa fa-check"></i><b>3.4.1</b> Measurements</a></li>
+<li class="chapter" data-level="3.4.2" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#tables"><i class="fa fa-check"></i><b>3.4.2</b> Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#plots"><i class="fa fa-check"></i><b>3.5</b> Plots</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#traditional-graphics"><i class="fa fa-check"></i><b>3.5.1</b> Traditional graphics</a></li>
+<li class="chapter" data-level="3.5.2" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#ggplot2-graphics"><i class="fa fa-check"></i><b>3.5.2</b> ggplot2 graphics</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html"><i class="fa fa-check"></i><b>A</b> Recaps in 1 minutes or less</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#possibilities-of-using-r"><i class="fa fa-check"></i><b>A.1</b> Possibilities of using R</a></li>
+<li class="chapter" data-level="A.2" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#console-features-1"><i class="fa fa-check"></i><b>A.2</b> Console features</a></li>
+<li class="chapter" data-level="A.3" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#advantages-of-script-editor-in-rstudio"><i class="fa fa-check"></i><b>A.3</b> Advantages of Script editor in RStudio</a></li>
+<li class="chapter" data-level="A.4" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#useful-keyboard-shortcuts-in-rstudio"><i class="fa fa-check"></i><b>A.4</b> Useful keyboard shortcuts in RStudio</a></li>
+<li class="chapter" data-level="A.5" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#base-types-in-r"><i class="fa fa-check"></i><b>A.5</b> Base types in R</a></li>
+<li class="chapter" data-level="A.6" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#data-structures-1"><i class="fa fa-check"></i><b>A.6</b> Data structures</a></li>
+<li class="chapter" data-level="A.7" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#operators-1"><i class="fa fa-check"></i><b>A.7</b> Operators</a></li>
+<li class="chapter" data-level="A.8" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#maths-functions"><i class="fa fa-check"></i><b>A.8</b> Maths functions</a></li>
+<li class="chapter" data-level="A.9" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#string-functions"><i class="fa fa-check"></i><b>A.9</b> String functions</a></li>
+<li class="chapter" data-level="A.10" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#base-r-statistical-functions"><i class="fa fa-check"></i><b>A.10</b> Base R Statistical Functions</a></li>
+<li class="chapter" data-level="A.11" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#regular-sequences"><i class="fa fa-check"></i><b>A.11</b> Regular sequences</a></li>
+<li class="chapter" data-level="A.12" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#subsetting-1"><i class="fa fa-check"></i><b>A.12</b> Subsetting</a></li>
+<li class="chapter" data-level="A.13" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#packages"><i class="fa fa-check"></i><b>A.13</b> Packages</a></li>
+<li class="chapter" data-level="A.14" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#readingwriting-data-files"><i class="fa fa-check"></i><b>A.14</b> Reading/Writing data files</a></li>
+<li class="chapter" data-level="A.15" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#filter"><i class="fa fa-check"></i><b>A.15</b> Filter</a></li>
+<li class="chapter" data-level="A.16" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#sort"><i class="fa fa-check"></i><b>A.16</b> Sort</a></li>
+<li class="chapter" data-level="A.17" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#data-type-conversion"><i class="fa fa-check"></i><b>A.17</b> Data type conversion</a></li>
+<li class="chapter" data-level="A.18" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#transformation-1"><i class="fa fa-check"></i><b>A.18</b> Transformation</a></li>
+<li class="chapter" data-level="A.19" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#descriptive-statistics-1"><i class="fa fa-check"></i><b>A.19</b> Descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="terminology-1.html"><a href="terminology-1.html"><i class="fa fa-check"></i><b>B</b> Terminology</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="terminology-1.html"><a href="terminology-1.html#terms-in-statistics"><i class="fa fa-check"></i><b>B.1</b> Terms in Statistics</a></li>
+<li class="chapter" data-level="B.2" data-path="terminology-1.html"><a href="terminology-1.html#terms-in-r"><i class="fa fa-check"></i><b>B.2</b> Terms in R</a></li>
+<li class="chapter" data-level="B.3" data-path="terminology-1.html"><a href="terminology-1.html#terms-in-statistics-and-r"><i class="fa fa-check"></i><b>B.3</b> Terms in Statistics and R</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>C</b> Miscellaneous</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="miscellaneous.html"><a href="miscellaneous.html#rules-of-using-r"><i class="fa fa-check"></i><b>C.1</b> Rules of using R</a></li>
+<li class="chapter" data-level="C.2" data-path="miscellaneous.html"><a href="miscellaneous.html#good-to-know"><i class="fa fa-check"></i><b>C.2</b> Good to know</a></li>
+<li class="chapter" data-level="C.3" data-path="miscellaneous.html"><a href="miscellaneous.html#why-is-my-code-broken"><i class="fa fa-check"></i><b>C.3</b> Why is my code broken?</a></li>
+<li class="chapter" data-level="C.4" data-path="miscellaneous.html"><a href="miscellaneous.html#other-resources"><i class="fa fa-check"></i><b>C.4</b> Other resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Basic R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Allaire, JJ, Joe Cheng, Yihui Xie, Jonathan McPherson, Winston Chang, Jeff Allen, Hadley Wickham, Aron Atkins, Rob Hyndman, and Ruben Arslan. 2017. <em>Rmarkdown: Dynamic Documents for r</em>. <a href="https://CRAN.R-project.org/package=rmarkdown">https://CRAN.R-project.org/package=rmarkdown</a>.
+</div>
+<div class="csl-entry">
+Harris, J. K. 2020. <em><span>Statistics With R: Solving Problems Using Real-World Data</span></em>. SAGE Publications. <a href="https://books.google.hu/books?id=MN1ByAEACAAJ">https://books.google.hu/books?id=MN1ByAEACAAJ</a>.
+</div>
+<div class="csl-entry">
+Harrison, Virginia, Richard Kemp, Nicola Brace, and Rosemary Snelgar. 2021. <em><span class="nocase">SPSS for Psychologists</span></em>. Edited by Red Globe Press. 7th ed.
+</div>
+<div class="csl-entry">
+Muenchen, Robert A., and Joseph M. Hilbe. 2010. <em>R for Stata Users</em>. Springer New York. <a href="https://doi.org/10.1007/978-1-4419-1318-0">https://doi.org/10.1007/978-1-4419-1318-0</a>.
+</div>
+<div class="csl-entry">
+R Core Team. 2021. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div class="csl-entry">
+Taveras, J. L. 2016. <em><span class="nocase">R for Excel Users: An Introduction to R for Excel Analysts</span></em>. CreateSpace Independent Publishing Platform.
+</div>
+<div class="csl-entry">
+Xie, Yihui. 2015. <em>Dynamic Documents with <span>R</span> and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.
+</div>
+<div class="csl-entry">
+———. 2017a. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.
+</div>
+<div class="csl-entry">
+———. 2017b. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in r</em>. <a href="https://CRAN.R-project.org/package=knitr">https://CRAN.R-project.org/package=knitr</a>.
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="miscellaneous.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["basicr_2020_21_2.pdf", "basicr_2020_21_2.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

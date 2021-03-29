@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>B Terminology | Basic R</title>
+  <meta name="description" content="Course materials for Basic R" />
+  <meta name="generator" content="bookdown 0.21.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="B Terminology | Basic R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Course materials for Basic R" />
+  <meta name="github-repo" content="cengel/R-intro" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="B Terminology | Basic R" />
+  
+  <meta name="twitter:description" content="Course materials for Basic R" />
+  
+
+<meta name="author" content="Kálmán Abari" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="recaps-in-1-minutes-or-less.html"/>
+<link rel="next" href="miscellaneous.html"/>
+<script src="libs/header-attrs-2.7.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Basic R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#setup-instructions"><i class="fa fa-check"></i>Setup Instructions</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#windows"><i class="fa fa-check"></i>Windows</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#macos"><i class="fa fa-check"></i>macOS</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#linux"><i class="fa fa-check"></i>Linux</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="backgroud.html"><a href="backgroud.html"><i class="fa fa-check"></i><b>1</b> How to use R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="backgroud.html"><a href="backgroud.html#base-r"><i class="fa fa-check"></i><b>1.1</b> Base R</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="backgroud.html"><a href="backgroud.html#console-of-base-r"><i class="fa fa-check"></i><b>1.1.1</b> Console of Base R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="backgroud.html"><a href="backgroud.html#rgui-on-windows"><i class="fa fa-check"></i><b>1.1.2</b> RGui on Windows</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="backgroud.html"><a href="backgroud.html#rstudio"><i class="fa fa-check"></i><b>1.2</b> RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="backgroud.html"><a href="backgroud.html#what-is-r-what-is-rstudio"><i class="fa fa-check"></i><b>1.3</b> What is R? What is RStudio?</a></li>
+<li class="chapter" data-level="1.4" data-path="backgroud.html"><a href="backgroud.html#why-learn-r"><i class="fa fa-check"></i><b>1.4</b> Why learn R?</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="backgroud.html"><a href="backgroud.html#r-does-not-involve-lots-of-pointing-and-clicking-and-thats-a-good-thing"><i class="fa fa-check"></i><b>1.4.1</b> R does not involve lots of pointing and clicking, and that’s a good thing</a></li>
+<li class="chapter" data-level="1.4.2" data-path="backgroud.html"><a href="backgroud.html#r-code-is-great-for-reproducibility"><i class="fa fa-check"></i><b>1.4.2</b> R code is great for reproducibility</a></li>
+<li class="chapter" data-level="1.4.3" data-path="backgroud.html"><a href="backgroud.html#r-is-interdisciplinary-and-extensible"><i class="fa fa-check"></i><b>1.4.3</b> R is interdisciplinary and extensible</a></li>
+<li class="chapter" data-level="1.4.4" data-path="backgroud.html"><a href="backgroud.html#r-works-on-data-of-all-shapes-and-sizes"><i class="fa fa-check"></i><b>1.4.4</b> R works on data of all shapes and sizes</a></li>
+<li class="chapter" data-level="1.4.5" data-path="backgroud.html"><a href="backgroud.html#r-produces-high-quality-graphics"><i class="fa fa-check"></i><b>1.4.5</b> R produces high-quality graphics</a></li>
+<li class="chapter" data-level="1.4.6" data-path="backgroud.html"><a href="backgroud.html#r-has-a-large-community"><i class="fa fa-check"></i><b>1.4.6</b> R has a large community</a></li>
+<li class="chapter" data-level="1.4.7" data-path="backgroud.html"><a href="backgroud.html#not-only-is-r-free-but-it-is-also-open-source-and-cross-platform"><i class="fa fa-check"></i><b>1.4.7</b> Not only is R free, but it is also open-source and cross-platform</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="backgroud.html"><a href="backgroud.html#knowing-your-way-around-rstudio"><i class="fa fa-check"></i><b>1.5</b> Knowing your way around RStudio</a></li>
+<li class="chapter" data-level="1.6" data-path="backgroud.html"><a href="backgroud.html#how-to-start-an-r-project"><i class="fa fa-check"></i><b>1.6</b> How to start an R project</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="backgroud.html"><a href="backgroud.html#organizing-your-working-directory"><i class="fa fa-check"></i><b>1.6.1</b> Organizing your working directory</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="backgroud.html"><a href="backgroud.html#interacting-with-r"><i class="fa fa-check"></i><b>1.7</b> Interacting with R</a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="backgroud.html"><a href="backgroud.html#rstudio-console-and-command-prompt"><i class="fa fa-check"></i><b>1.7.1</b> RStudio Console and Command Prompt</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="backgroud.html"><a href="backgroud.html#quarterly-results"><i class="fa fa-check"></i><b>1.8</b> Quarterly Results</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="backgroud.html"><a href="backgroud.html#by-product"><i class="fa fa-check"></i><b>1.8.1</b> By Product</a></li>
+<li class="chapter" data-level="1.8.2" data-path="backgroud.html"><a href="backgroud.html#by-region"><i class="fa fa-check"></i><b>1.8.2</b> By Region</a></li>
+<li class="chapter" data-level="1.8.3" data-path="backgroud.html"><a href="backgroud.html#rstudio-script-editor"><i class="fa fa-check"></i><b>1.8.3</b> RStudio Script Editor</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="the-r-language.html"><a href="the-r-language.html"><i class="fa fa-check"></i><b>2</b> The R language</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="the-r-language.html"><a href="the-r-language.html#basic-data-type"><i class="fa fa-check"></i><b>2.1</b> Basic data type</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="the-r-language.html"><a href="the-r-language.html#double"><i class="fa fa-check"></i><b>2.1.1</b> Double</a></li>
+<li class="chapter" data-level="2.1.2" data-path="the-r-language.html"><a href="the-r-language.html#integer"><i class="fa fa-check"></i><b>2.1.2</b> Integer</a></li>
+<li class="chapter" data-level="2.1.3" data-path="the-r-language.html"><a href="the-r-language.html#characters"><i class="fa fa-check"></i><b>2.1.3</b> Characters</a></li>
+<li class="chapter" data-level="2.1.4" data-path="the-r-language.html"><a href="the-r-language.html#logical"><i class="fa fa-check"></i><b>2.1.4</b> Logical</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="the-r-language.html"><a href="the-r-language.html#operators"><i class="fa fa-check"></i><b>2.2</b> Operators</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="the-r-language.html"><a href="the-r-language.html#arithmetic-operators"><i class="fa fa-check"></i><b>2.2.1</b> Arithmetic operators</a></li>
+<li class="chapter" data-level="2.2.2" data-path="the-r-language.html"><a href="the-r-language.html#logical-operators"><i class="fa fa-check"></i><b>2.2.2</b> Logical operators</a></li>
+<li class="chapter" data-level="2.2.3" data-path="the-r-language.html"><a href="the-r-language.html#relational-operators"><i class="fa fa-check"></i><b>2.2.3</b> Relational operators</a></li>
+<li class="chapter" data-level="2.2.4" data-path="the-r-language.html"><a href="the-r-language.html#assigment-operators"><i class="fa fa-check"></i><b>2.2.4</b> Assigment operators</a></li>
+<li class="chapter" data-level="2.2.5" data-path="the-r-language.html"><a href="the-r-language.html#miscellaneous-operators"><i class="fa fa-check"></i><b>2.2.5</b> Miscellaneous operators</a></li>
+<li class="chapter" data-level="2.2.6" data-path="the-r-language.html"><a href="the-r-language.html#operator-precedence-in-r"><i class="fa fa-check"></i><b>2.2.6</b> Operator Precedence in R</a></li>
+<li class="chapter" data-level="2.2.7" data-path="the-r-language.html"><a href="the-r-language.html#binary-and-unary-operators"><i class="fa fa-check"></i><b>2.2.7</b> Binary and unary operators</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="the-r-language.html"><a href="the-r-language.html#working-directory-1"><i class="fa fa-check"></i><b>2.3</b> Working directory</a></li>
+<li class="chapter" data-level="2.4" data-path="the-r-language.html"><a href="the-r-language.html#objects"><i class="fa fa-check"></i><b>2.4</b> Objects</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="the-r-language.html"><a href="the-r-language.html#testing-the-type"><i class="fa fa-check"></i><b>2.4.1</b> Testing the type</a></li>
+<li class="chapter" data-level="2.4.2" data-path="the-r-language.html"><a href="the-r-language.html#coercion"><i class="fa fa-check"></i><b>2.4.2</b> Coercion</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="the-r-language.html"><a href="the-r-language.html#data-structures"><i class="fa fa-check"></i><b>2.5</b> Data structures</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="the-r-language.html"><a href="the-r-language.html#vectors"><i class="fa fa-check"></i><b>2.5.1</b> Vectors</a></li>
+<li class="chapter" data-level="2.5.2" data-path="the-r-language.html"><a href="the-r-language.html#factor"><i class="fa fa-check"></i><b>2.5.2</b> Factor</a></li>
+<li class="chapter" data-level="2.5.3" data-path="the-r-language.html"><a href="the-r-language.html#matrix"><i class="fa fa-check"></i><b>2.5.3</b> Matrix</a></li>
+<li class="chapter" data-level="2.5.4" data-path="the-r-language.html"><a href="the-r-language.html#array"><i class="fa fa-check"></i><b>2.5.4</b> Array</a></li>
+<li class="chapter" data-level="2.5.5" data-path="the-r-language.html"><a href="the-r-language.html#list"><i class="fa fa-check"></i><b>2.5.5</b> List</a></li>
+<li class="chapter" data-level="2.5.6" data-path="the-r-language.html"><a href="the-r-language.html#data-frame"><i class="fa fa-check"></i><b>2.5.6</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="the-r-language.html"><a href="the-r-language.html#functions"><i class="fa fa-check"></i><b>2.6</b> Functions</a></li>
+<li class="chapter" data-level="2.7" data-path="the-r-language.html"><a href="the-r-language.html#vectorized-operations"><i class="fa fa-check"></i><b>2.7</b> Vectorized operations</a></li>
+<li class="chapter" data-level="2.8" data-path="the-r-language.html"><a href="the-r-language.html#creating-date-sequences"><i class="fa fa-check"></i><b>2.8</b> Creating date sequences</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="the-r-language.html"><a href="the-r-language.html#creating-a-sequence-of-numeric-values"><i class="fa fa-check"></i><b>2.8.1</b> Creating a sequence of numeric values</a></li>
+<li class="chapter" data-level="2.8.2" data-path="the-r-language.html"><a href="the-r-language.html#creating-a-sequence-of-repeated-values"><i class="fa fa-check"></i><b>2.8.2</b> Creating a Sequence of Repeated Values</a></li>
+<li class="chapter" data-level="2.8.3" data-path="the-r-language.html"><a href="the-r-language.html#sequential-names"><i class="fa fa-check"></i><b>2.8.3</b> Sequential names</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="the-r-language.html"><a href="the-r-language.html#subsetting"><i class="fa fa-check"></i><b>2.9</b> Subsetting</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="the-r-language.html"><a href="the-r-language.html#subsetting-vector"><i class="fa fa-check"></i><b>2.9.1</b> Subsetting vector</a></li>
+<li class="chapter" data-level="2.9.2" data-path="the-r-language.html"><a href="the-r-language.html#subsetting-data-frames"><i class="fa fa-check"></i><b>2.9.2</b> Subsetting data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="the-r-language.html"><a href="the-r-language.html#string-data"><i class="fa fa-check"></i><b>2.10</b> String data</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="the-r-language.html"><a href="the-r-language.html#simple-character-manipulation"><i class="fa fa-check"></i><b>2.10.1</b> Simple Character Manipulation</a></li>
+<li class="chapter" data-level="2.10.2" data-path="the-r-language.html"><a href="the-r-language.html#searching-and-replacing"><i class="fa fa-check"></i><b>2.10.2</b> Searching and Replacing</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="the-r-language.html"><a href="the-r-language.html#packages-in-r"><i class="fa fa-check"></i><b>2.11</b> Packages in R</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="the-r-language.html"><a href="the-r-language.html#load-packages"><i class="fa fa-check"></i><b>2.11.1</b> Load packages</a></li>
+<li class="chapter" data-level="2.11.2" data-path="the-r-language.html"><a href="the-r-language.html#install-packages"><i class="fa fa-check"></i><b>2.11.2</b> Install packages</a></li>
+<li class="chapter" data-level="2.11.3" data-path="the-r-language.html"><a href="the-r-language.html#masking"><i class="fa fa-check"></i><b>2.11.3</b> Masking</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="the-r-language.html"><a href="the-r-language.html#internal-help"><i class="fa fa-check"></i><b>2.12</b> Internal help</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Getting started with a data analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#data-analysis"><i class="fa fa-check"></i><b>3.1</b> 3 Data analysis</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#descriptive-statistics"><i class="fa fa-check"></i><b>3.1.1</b> 3.1 Descriptive statistics</a></li>
+<li class="chapter" data-level="3.1.2" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#statistical-hypothesis-testing"><i class="fa fa-check"></i><b>3.1.2</b> 3.2 Statistical hypothesis testing</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#publishing-results"><i class="fa fa-check"></i><b>3.2</b> 4 Publishing results</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#datasets"><i class="fa fa-check"></i><b>3.2.1</b> Datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#example-one"><i class="fa fa-check"></i><b>3.3</b> Example one</a></li>
+<li class="chapter" data-level="3.4" data-path="getting-started-with-a-data-analysis.html"><a href="getting-started-with-a-data-analysis.html#example-two"><i class="fa fa-check"></i><b>3.4</b> Example two</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html"><i class="fa fa-check"></i><b>A</b> Recaps in 1 minutes or less</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#possibilites-of-using-r"><i class="fa fa-check"></i><b>A.1</b> Possibilites of using R</a></li>
+<li class="chapter" data-level="A.2" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#console-features-1"><i class="fa fa-check"></i><b>A.2</b> Console features</a></li>
+<li class="chapter" data-level="A.3" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#advantages-of-script-editor-in-rstudio"><i class="fa fa-check"></i><b>A.3</b> Advantages of Script editor in RStudio</a></li>
+<li class="chapter" data-level="A.4" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#useful-keyboard-shortcuts-in-rstudio"><i class="fa fa-check"></i><b>A.4</b> Useful keyboard shortcuts in RStudio</a></li>
+<li class="chapter" data-level="A.5" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#base-types-in-r"><i class="fa fa-check"></i><b>A.5</b> Base types in R</a></li>
+<li class="chapter" data-level="A.6" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#data-structures-1"><i class="fa fa-check"></i><b>A.6</b> Data structures</a></li>
+<li class="chapter" data-level="A.7" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#operators-1"><i class="fa fa-check"></i><b>A.7</b> Operators</a></li>
+<li class="chapter" data-level="A.8" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#maths-functions"><i class="fa fa-check"></i><b>A.8</b> Maths functions</a></li>
+<li class="chapter" data-level="A.9" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#string-functions"><i class="fa fa-check"></i><b>A.9</b> String functions</a></li>
+<li class="chapter" data-level="A.10" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#base-r-statistical-functions"><i class="fa fa-check"></i><b>A.10</b> Base R Statistical Functions</a></li>
+<li class="chapter" data-level="A.11" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#regular-sequences"><i class="fa fa-check"></i><b>A.11</b> Regular sequences</a></li>
+<li class="chapter" data-level="A.12" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#subsetting-1"><i class="fa fa-check"></i><b>A.12</b> Subsetting</a></li>
+<li class="chapter" data-level="A.13" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#packages"><i class="fa fa-check"></i><b>A.13</b> Packages</a></li>
+<li class="chapter" data-level="A.14" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#readingwriting-data-files"><i class="fa fa-check"></i><b>A.14</b> Reading/Writing data files</a></li>
+<li class="chapter" data-level="A.15" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#filter"><i class="fa fa-check"></i><b>A.15</b> Filter</a></li>
+<li class="chapter" data-level="A.16" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#sort"><i class="fa fa-check"></i><b>A.16</b> Sort</a></li>
+<li class="chapter" data-level="A.17" data-path="recaps-in-1-minutes-or-less.html"><a href="recaps-in-1-minutes-or-less.html#descriptive-statistics-1"><i class="fa fa-check"></i><b>A.17</b> Descriptive statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="terminology.html"><a href="terminology.html"><i class="fa fa-check"></i><b>B</b> Terminology</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="terminology.html"><a href="terminology.html#terms-in-statistics"><i class="fa fa-check"></i><b>B.1</b> Terms in Statistics</a></li>
+<li class="chapter" data-level="B.2" data-path="terminology.html"><a href="terminology.html#terms-in-r"><i class="fa fa-check"></i><b>B.2</b> Terms in R</a></li>
+<li class="chapter" data-level="B.3" data-path="terminology.html"><a href="terminology.html#terms-in-statistics-and-r"><i class="fa fa-check"></i><b>B.3</b> Terms in Statistics and R</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>C</b> Miscellaneous</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="miscellaneous.html"><a href="miscellaneous.html#rules-of-using-r"><i class="fa fa-check"></i><b>C.1</b> Rules of using R</a></li>
+<li class="chapter" data-level="C.2" data-path="miscellaneous.html"><a href="miscellaneous.html#good-to-know"><i class="fa fa-check"></i><b>C.2</b> Good to know</a></li>
+<li class="chapter" data-level="C.3" data-path="miscellaneous.html"><a href="miscellaneous.html#why-is-my-code-broken"><i class="fa fa-check"></i><b>C.3</b> Why is my code broken?</a></li>
+<li class="chapter" data-level="C.4" data-path="miscellaneous.html"><a href="miscellaneous.html#other-resources"><i class="fa fa-check"></i><b>C.4</b> Other resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Basic R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="terminology" class="section level1" number="5">
+<h1><span class="header-section-number">B</span> Terminology</h1>
+<div id="terms-in-statistics" class="section level2" number="5.1">
+<h2><span class="header-section-number">B.1</span> Terms in Statistics</h2>
+<dl>
+<dt>Bar chart</dt>
+<dd><p>A graph used to display summary statistics such as the <em>mean</em> (in the case of a <em>scale variable</em>) or the <em>frequency</em> (in the case of a <em>nominal variable</em>).</p>
+</dd>
+<dt>Boxplot</dt>
+<dd><p>a visual representation of data that shows central tendency (usually the median) and spread (usually the interquartile range) of a numeric variable for one or more groups; boplots are often used to compare the distribution of a continuous variable across several groups</p>
+</dd>
+<dt>Case / Observation</dt>
+<dd><p>A case is the unit of analysis; one person or other entity. In psychology, this is normally the data deriving from a single participant. In some research, the cases will not be people. For example, we may be interested in the average academic attainment for pupils from different schools. Here, the cases would be the schools. In R, a single row of data in a data frame represents a case.</p>
+</dd>
+<dt>Categorical variable</dt>
+<dd><p>variable measured in categories; there are two types of categorical variables: ordinal variables have categories with a logical order (e.g., Liker scales), while nominal variables have categories with no logical order (e.g., religious affiliation)</p>
+</dd>
+<dt>Data</dt>
+<dd><p>A set of values. A data set is typically made up of a number of <em>variables</em>. In quantitative research, data are numeric.</p>
+</dd>
+<dt>Descriptive statistics</dt>
+<dd><p>Procedures that allow you to describe data by summarising, displaying or illustrating them. Often used as a general term for summary descriptive statistics: <em>measures of central tendency</em> and <em>measures of dispersion</em>. Graphs are descriptive statistics used to illustrate the data.</p>
+</dd>
+<dt>Frequency/ies</dt>
+<dd><p>The number of times a particular value of a variable occurs.</p>
+</dd>
+<dt>Histogram</dt>
+<dd><p>a visual display of data used to examine the distribution of a numeric variable</p>
+</dd>
+<dt>Interval data</dt>
+<dd><p>Data that have been measured at the interval level. Also referred to as continuous data. These are data that are measured along a scale, where the differences (or intervals) on adjacent points on the scale are the same. R refers to these data type as ‘numbers.’</p>
+</dd>
+<dt>Levels of measurement</dt>
+<dd><p>The type of scale used to measure variables. Usually, four levels of measurement are described: nominal, ordinal, interval and ratio. The first two are classified as nonparametric levels of measurement, and the last two as parametric levels of measurement.</p>
+</dd>
+<dt>Missing values</dt>
+<dd><p>A data set may be incomplete, for example, if some observations or measurements failed or if participants didn’t respond to some questions. It is important to distinguish these missing data points from valid data. Missing values are the values R has reserved for each variable to indicate that a data point is missing. These missing values can either be specified by the user (user missing) or automatically set by R (<code>NA</code>).</p>
+</dd>
+<dt>Nominal data</dt>
+<dd><p>Data collected at a level of measurement that yields nominal data (nominal just means ‘named’), also referred to as ‘categorical data,’ where the value does not imply anything other than a label; for example, 1 = male and 2 = female.</p>
+</dd>
+<dt>Observation / Case</dt>
+<dd><p>An observation is the unit of analysis; one person or other entity. In psychology, this is normally the data deriving from a single participant. In some research, the cases will not be people. For example, we may be interested in the average academic attainment for pupils from different schools. Here, the observation would be the schools. In R, a single row of data in a data frame represents an observation.</p>
+</dd>
+<dt>Ordinal data</dt>
+<dd><p>Ordinal data are data measured on a scale that only indicates rank and not absolute value. An example of an ordinal scale is academic performance measured by class rank.</p>
+</dd>
+<dt>Participant</dt>
+<dd><p>People who take part in an experiment or research study. Previously, the word ‘subject’ was used, and still is in many statistics books.</p>
+</dd>
+<dt>Population</dt>
+<dd><p>The total set of all possible scores for a particular variable. See also N</p>
+</dd>
+<dt>Quantitative data</dt>
+<dd><p>Is used to describe numeric data measured on any of the four levels of measurement. Sometimes though, the term ‘qualitative data’ is then used to describe data measured with nominal scales.</p>
+</dd>
+<dt>Ratio data</dt>
+<dd><p>Ratio data has all the properties of an interval variable, but also has an absolute value of 0. That is, when the variable equals 0 it means that there is none of that variable, which also gives more meaning to the relationship between different measurements on a ratio scale. For example, as weight is a ratio variable, a weight of 6g is twice as heavy as 3g. Whereas a temperature of 40°C is not twice as hot as 20°C, so while Celsius represents interval data, it is not ratio data as it does not have an absolute zero (i.e. 0°C does not represent an absence of temperature).</p>
+</dd>
+<dt>Sample</dt>
+<dd><p>A subset of observations from some <em>population</em> that is often analyzed to learn about the poplulation sampled.</p>
+</dd>
+<dt>Summary statistics</dt>
+<dd><p>used to provide an overview of the characteristics of a sample; this typically includes measures central tendency and spread for numeric variables and the frequencies and percentages of categorical variables</p>
+</dd>
+<dt>Statistics</dt>
+<dd><p>A general term for procedures for summarising or displaying data (<em>descriptive statistics</em>) and for analysing data (<em>inferential statistical tests</em>).</p>
+</dd>
+<dt>Variable</dt>
+<dd><p>a measured characteristic of some entity (e.g., income, years of education, sex, height, blood pressure, smoking status, etc.); A variable in R is represented by a column in data frame.</p>
+</dd>
+</dl>
+</div>
+<div id="terms-in-r" class="section level2" number="5.2">
+<h2><span class="header-section-number">B.2</span> Terms in R</h2>
+<dl>
+<dt>Argument</dt>
+<dd><p>The options that control what the commands do and the arguments that control what functions do. Confusing because in R, functions do what both commands and functions do in Stata. More formally, input(s) to a function that control it. Includes data to analyze. Array A matrix with more than two dimensions. All variables must be only one type (e.g., all numeric or all character). More formally, a vector with a dim attribute. The dim controls the number and size of dimensions.</p>
+</dd>
+<dt>Attributes</dt>
+<dd><p>Traits of a data set like its variable names and labels. More formally, traits of objects such as names, class, or dim. Class An attribute of a variable or data set that a command used to change its options automatically. More formally, the class attribute of an object determines which method of a generic function is used when the object is an argument in the function call. Component Like one data set stored in a zipped set of data sets. More formally, an item in a list. The length of a list is the number of components it has. CRAN The Comprehensive R Archive Network at <a href="http://cran.r-project." class="uri">http://cran.r-project.</a> org/. An Internet archive like the Statistical Software Components (SSC) Archive. Consists of a set of sites around the world called mirrors that provide R and its add-on packages for you to download and install. Data frame A data set. More formally, a set of vectors bound together in a list. They can be different modes or classes (e.g., numeric and character), but they must have equal length.</p>
+</dd>
+</dl>
+<p>Element A specific value for a variable. More formally, an item in a vector.</p>
+<p>Factor A categorical variable and its value labels. Value labels may be nothing more than “1,” “2,” . . , if not assigned explicitly. More formally, the A Glossary of R jargon 501 type of object that represents a categorical variable. It stores its labels in its levels attribute. Function A command and/or a function. When you apply it down through cases, it is just like a Stata command. However, you can also apply it across rows like a Stata function. More formally, an R program that is stored as an object.</p>
+<dl>
+<dt>Index</dt>
+<dd><p>The order number of a variable in a data set or the subscript of a value in a variable. In our practice data set gender is the second variable, so its index is 2. Gender is mydata[ ,2]. The first index selects rows, the second selects columns. If empty, it refers to all rows/columns. More formally, the number of the component in a list or data frame, or of an element in a vector.</p>
+</dd>
+<dt>Length</dt>
+<dd><p>The number of observations/cases in a variable, including missing values, or the number of variables in a data set. More formally, a measure of objects. For vectors, it is the number of its elements (including NAs). For lists or data frames, it is the number of its components. Levels The values that a categorical variable can have. Actually stored as a part of the variable itself in what appears to be a very short character variable (even when the values themselves are numbers). More formally, an attribute to a factor object that is a character vector of the values the factor can have. Also an argument to the factor and ordered functions that can set the levels.</p>
+</dd>
+<dt>List</dt>
+<dd><p>Like a zipped collection of data sets that you can analyze easily without unzipping. More formally, a set of objects of any class. Can contain vectors, data frames, matrices and even other lists.</p>
+</dd>
+<dt>Numeric</dt>
+<dd><p>A variable that contains only numbers. More formally, the atomic mode that represents real numbers. This contains storage modes double, single and integer. Object A data set, a variable or even the equivalent of a Stata command). More formally, almost everything in R. If it has a mode, it is an object. Includes data frames, vectors, matrices, arrays, lists and functions.</p>
+</dd>
+<dt>Package</dt>
+<dd><p>a collection of functions and datasets for use in R that usually has a specific purpose, such as conducting partial correlation anaylyses (<strong>ppcor</strong> package)</p>
+</dd>
+<dt>Script file</dt>
+<dd><p>a text file in R similar to something written in the Notepad text editor on a Windows computer or the TextEdit text editor on a Mac computer; it is saved with a <code>.R</code> file extension</p>
+</dd>
+</dl>
+<p>Subscript Choosing variables or values by the order in which they appear or by their name. More formally, the extraction or replacement of an object using its index or name in square [brackets]. Vector A variable. It can exist on its own in memory or it can be part of a data set. More formally, a set of values that have the same mode, i.e. an atomic object. Workspace A temporary work area in which all R computation happens. Data that exists there will vanish if not saved to your hard drive before quitting R. More formally, the area of your computer’s main memory where R does all its work. Data must be loaded into it from files, and packages must be loaded into it from the library, before you can use either.</p>
+<dl>
+<dt>Constants</dt>
+<dd><p>Constants, as the name suggests, are entities whose value cannot be altered. Basic types of constant are double constants, integer constants, logical constants and character constants.</p>
+</dd>
+<dt>Operators</dt>
+<dd><p>An operator is a symbol that tells the compiler to perform specific mathematical, logical, or other manipulations. R language is rich in built-in operators and provides following types of operators: Arithmetic Operators, Relational Operators, Logical Operators, Assignment Operators, Miscellaneous Operators.</p>
+</dd>
+<dt>Basic types</dt>
+<dd><p>The most important basic data types are the double, integer, logical, and character.</p>
+</dd>
+<dt>Expression</dt>
+<dd><p>An expression is an instruction to perform a particular task. An expression is any sequence of R constants, object’s names, operators, function calls, and parentheses. An expression has a type as well as a value.</p>
+</dd>
+</dl>
+<p>Data structures (vector, factor, data frames)</p>
+<dl>
+<dt>Argument</dt>
+<dd><p>information input into a function that controls how the function behaves</p>
+</dd>
+<dt>Assigning</dt>
+<dd><p>assigning a value to an object is done by using a left-arrow (<code>&lt;-</code>), with the arrow separating the name of the object on the left from the expression itself on the right: <code>object_name &lt;- expression</code></p>
+</dd>
+<dt>Comment</dt>
+<dd><p>Statements included in code but not analyzed; in R, comment is denoted by hashtag (<code>#</code>) and is often used to clarify the codo</p>
+</dd>
+<dt>Matrix</dt>
+<dd><p>A data set that must contain only one type of variable, e.g. all numeric or character. More formally, a two-dimensional array; that is, a vector with a dim attribute of length 2.</p>
+</dd>
+<dt>NA</dt>
+<dd><p>A missing value. Stands for Not Available.</p>
+</dd>
+<dt>NaN</dt>
+<dd><p>A missing value. Stands for Not a Number. Something that is undefined mathematically such as zero divided by zero.</p>
+</dd>
+<dt>NULL</dt>
+<dd><p>An object you can use to drop variables or values. E.g. <code>mydata$x &lt;- NULL</code> drops the variable <code>x</code> from the data set <code>mydata</code>. Assigning it to an object deletes it.</p>
+</dd>
+<dt>Object</dt>
+<dd><p>information stored in R; data analysis and data management are then performed on these stored objects.</p>
+</dd>
+<dt>Recycling rules</dt>
+<dd><p>If one tries to add two structures with a different number of elements, then the shortest is recycled to length of longest. That is, if for instance you add <code>c(1, 2, 3)</code> to a six-element vector then you will really add <code>c(1, 2, 3, 1, 2, 3)</code>. If the length of the longer vector is not a multiple of the shorter one, a warning is given.</p>
+</dd>
+<dt>Vector</dt>
+<dd><p>Vectors are one-dimensional and homogenous data structures. It can exist on its own in memory or it can be part of a data frame. More formally, a set of values that have the same base type. A vector can be a vector of characters, logical, integers or double.</p>
+</dd>
+<dt>Working directory</dt>
+<dd><p>R uses a working directory, where R will look, by default, for files you ask it to load. It also where, by default, any files you write to disk will go.</p>
+</dd>
+<dt>Workspace</dt>
+<dd><p>A temporary work area in which all R computation happens. Data that exists there will vanish if not saved to your hard drive before quitting R. More formally, the area of your computer’s main memory where R does all its work. Data must be loaded into it from files, and packages must be loaded into it from the library, before you can use either.</p>
+</dd>
+</dl>
+</div>
+<div id="terms-in-statistics-and-r" class="section level2" number="5.3">
+<h2><span class="header-section-number">B.3</span> Terms in Statistics and R</h2>
+<table style="width:83%;">
+<caption>Terms in statistics and R</caption>
+<colgroup>
+<col width="41%" />
+<col width="41%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Terms in Statistics</th>
+<th>Terms in R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><ul>
+<li>dataset</li>
+<li>sample</li>
+</ul></td>
+<td><ul>
+<li>data frame</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><ul>
+<li>observation</li>
+</ul></td>
+<td><ul>
+<li>rows in a data frame</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><ul>
+<li>variable</li>
+</ul></td>
+<td><ul>
+<li>columns in a data frame</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><ul>
+<li>categorical variable</li>
+<li>qualitative variable</li>
+<li>nominal variable</li>
+<li>ordinal variable</li>
+</ul></td>
+<td><ul>
+<li>factor</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><ul>
+<li>quantitative variable</li>
+<li>continuous variable</li>
+<li>discrete variable</li>
+</ul></td>
+<td><ul>
+<li>numeric vector</li>
+<li>double vector</li>
+<li>integer vector</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="recaps-in-1-minutes-or-less.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="miscellaneous.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["basicr.pdf", "basicr.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

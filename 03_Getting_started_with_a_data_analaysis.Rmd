@@ -1,0 +1,1008 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, echo=FALSE, inclued=FALSE, purl=FALSE, message = FALSE}
+source("common.R")
+```
+
+# Getting started with a data analysis
+
+## Terminology
+
+Before we begin data management tasks, we need a few vocabulary terms
+would be useful to discuss. Data scientists were usually interested in
+the characteristics and behaviors of humans and organizations. To
+understand these things, scientists often measured and recorded
+information about people or organizations.
+
+**Dataset 1 - Marijuana legalization**
+
+For example, a data scientist working on social science might be
+interested in understanding whether age is related to votes for
+marijuana legalization. To get this information, in several years,
+including 2016, the [GSS](https://gssdataexplorer.norc.org) survey
+included a question asking the survey participants whether they support
+marijuana legalization.
+
+The GSS question was worded as follows:
+
+-   Do you think the use of marijuana should be legal or not?
+
+Below the question, the different response options were listed:
+
+-   legal,
+-   not legal,
+-   don't know (`DK`),
+-   no answer (`NA`),
+-   not applicable (`IAP`).
+
+The GSS Data Explorer (<https://gssdataexplorer.norc.org>) allows
+people to create a free account and browse the data that have been
+collected in the surveys. We used the Data Explorer to select the
+marijuana legalization question and a question about age. The age is
+important, since marijuana legalization had been primarily up to voters
+so far, the success of ballot initiatives in the future will depend on
+the support of people of voting age. If younger people are more
+supportive, this suggests that over time, the electorate will become
+more supportive as the old electorate decreases.
+
+We saved age and vote data from the GSS and made the data file with the
+file name `legal_weed_age_GSS2016_ch1.csv`. You can see the first 6 rows
+from this data file:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(rio)
+library(kableExtra)
+df <- read.table(file = "data/legal_weed_age_GSS2016_ch1.csv", sep=",", header=T, fileEncoding = "UTF-8-BOM")
+#names(df)
+#table(df$grass)
+head(df) %>% 
+knitr::kable(escape = F, booktabs = T, 
+   caption = 'Data set for marijuana legalization',
+  format = "pandoc") %>% 
+  kable_styling(full_width = F, latex_options = c("striped", "scale_down"))
+```
+
+As you can see, each person is an *observation*, and there are two *variables*, voting behavior (`grass`) and `age`. In a typical *dataset*, observations are the rows and variables are the columns.
+
+**Example 2 - Student survey**
+
+Another example a data frame contains the responses of 237 Statistics I. students at the University of Adelaide to a number of questions. It contains a lot of variables:
+
+-   `Sex` - The sex of the student. (Factor with levels "Male" and "Female".)
+-   `Wr.Hnd` - span (distance from tip of thumb to tip of little finger of spread hand) of writing hand, in centimetres.
+-   `NW.Hnd` - span of non-writing hand.
+-   `W.Hnd` - writing hand of student. (Factor, with levels "Left" and "Right".)
+-   `Fold` - "Fold your arms! Which is on top" (Factor, with levels "R on L", "L on R", "Neither".)
+-   `Pulse` - pulse rate of student (beats per minute).
+-   `Clap` - 'Clap your hands! Which hand is on top?' (Factor, with levels "Right", "Left", "Neither".)
+-   `Exer` - how often the student exercises. (Factor, with levels "Freq" (frequently), "Some", "None".)
+-   `Smoke` - how much the student smokes. (Factor, levels "Heavy", "Regul" (regularly), "Occas" (occasionally), "Never".)
+-   `Height` - height of the student in centimetres.
+-   `M.I` - whether the student expressed height in imperial (feet/inches) or metric (centimetres/metres) units. (Factor, levels "Metric", "Imperial".)
+-   `Age` - age of the student in years.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(MASS)
+head(MASS::survey) %>% 
+knitr::kable(escape = F, booktabs = T, 
+   caption = 'Student survey',
+  format = "pandoc") %>% 
+  kable_styling(full_width = T, latex_options = c("striped", "scale_down"))
+```
+
+In statistics data are organized in what we call a *data matrix* or *dataset*, where each row represents an observation or a case and each column represents a variable. If you ever use spreadsheets, for example an Excel spreadsheet, this representation should be familiar to you as well. There are two types of variables, numerical and categorical. Numerical, in other words, quantitative variables, take on numerical values. It is sensible to add, subtract, take averages, etc., with these values. Categorical, or qualitative variables, take on a limited number of distinct categories. These categories can be identified with numbers or labels, but it wouldn't be sensible to do arithmetic operations with these values.
+
+Numerical variables can further be categorized as continuous or discrete. Continuous numerical variables are usually measured, such as height, and they can take on any numerical value. While we tend to round our height when we record it, it's actually measured on a continuous scale.
+
+Discrete numerical variables are generally counted, such as the number of cars a house. These can only be whole, non-negative numbers.
+
+Categorical variables that have ordered levels are called ordinal. Think about a survey question where you're asked how satisfied you are with the customer service you received, and the options are "very unsatisfied", "unsatisfied", "neutral", "satisfied", or "very satisfied". These levels have an inherent ordering, and hence the variable would be called ordinal. If the levels of a categorical variable do not have an inherent ordering to them, then the variable is
+simply called nominal.
+
+**These terms in statistics have a pair in R**. Dataset corresponds to data frame. Variable corresponds to columns of data frame. Discrete variables must be an integer or double vector in R. Continuous variables must be an integer or double vector in R, as well. Nominal or ordinal variables must be factor in R.
+
+To sum it up, study the list below.
+
+Terms in statistics - **terms in R** - *example* :
+
+-   Data matrix, dataset - **data frame** - *marijuana legalization
+    dataset and survey dataset*
+
+-   Variable - **columns of data frame** - *each column of two dataset:
+    grass, age, Sex, Wr.Hnd, etc.*
+
+    -   numerical / quantitative
+
+        -   discrete - **integer or double vector** - *Pulse*
+        -   continuous - **integer or double vector** - *age, Wr.Hnd,
+            NW.Hnd, Height, Age*
+
+    -   categorical / qualitative
+
+        -   ordinal - **factor** - *Exer, Smoke*
+        -   nominal - **factor** - *grass, Sex, W.Hnd, Fold, Clap, M.I*
+
+## Read and write data
+
+R has an extensive range of functions to import many types of data files. For example, R can import data from from text files, from Microsoft Excel, from popular statistical packages, and from web sites. 
+
+### Importing data from a delimited text file
+
+You can import data from delimited text files using `read.table()`, a function that reads a file in table format and saves it as a data frame. Each row of the table appears as one line in the file. The syntax is
+
+```{r eval=FALSE}
+mydataframe <- read.table(file, options)
+```
+
+where file is a delimited file and the options are parameters controlling how data is processed. The most common options are listed below:
+
+* `header=` - A logical value indicating whether the file contains the variable names in the first line.
+* `sep=` -  The delimiter separating data values. The default is `sep=""`, which denotes one or more spaces, tabs, new lines, or carriage returns. Use `sep=","` to read comma-delimited files, `sep="\t"` to read tab-delimited files, and `sep=";"` to read semicolon-delimited files
+* `dec=` - The character `","` or `"."` used in the file for decimal points
+* `quote=` - 	Character(s) used to delimit strings that contain special characters. By default this is either double (`"`) or single (`'`) quotes.
+* `comment.char=` - A character vector of length one containing a single character or an empty string. Use "" to turn off the interpretation of comments altogether.
+* `fileEncoding=`	- Character string for encoding name, e.g. `"UTF-8"`, `"UTF-8-BOM"` or `"latin2"`.
+
+Consider a text file named `legal_weed_age_GSS2016_ch1.csv` containing voters’ response for marijuana legalization question and age. Each line of the file represents a student. The first line contains the variable names, separated with commas. Each subsequent line contains a voter’s information, also separated with commas. The first few lines of the file are as follows:
+
+
+```{r eval=FALSE}
+grass,age
+IAP,47
+LEGAL,61
+NOT LEGAL,72
+IAP,43
+LEGAL,55
+LEGAL,53
+IAP,50
+NOT LEGAL,23
+```
+
+
+The file can be imported into a data frame using the following code:
+
+```{r}
+# read the GSS 2016 data 
+gss.2016 <- read.table(file = "data/legal_weed_age_GSS2016_ch1.csv", 
+                       header = T, sep = ",", fileEncoding = "UTF-8-BOM")
+```
+
+The results are as follows:
+
+```{r}
+head(gss.2016) # first 6 rows
+str(gss.2016)
+```
+
+
+There are several interesting things to note about how the data is imported. By default, `read.table()` do not convert character variables to factors. You can suppress this behaviour in a number of ways. Including the option `stringsAsFactors=TRUE` turns off this behaviour for all character variables. The variable `age` is a character vector, which is not desirable. Age is a continuous variable, so it must be a numeric in R. We will discuss this issue in detail later.
+
+
+### Importing data from Excel
+
+The best way to read an Excel file is to import Excel worksheets directly using the **rio** package. Be sure to download and install it before you first use it. Alternatively, export it to a comma-delimited file from Excel and import it into R using the method described earlier. 
+
+The **rio** package can be used to read, write, many file formats. The `import()` function imports a worksheet into a data frame. The simplest format is
+
+
+```{r eval=FALSE}
+import(file)
+```
+
+
+where `file=` is the path to an Excel workbook.
+
+Let's import the student survey: imports the first worksheet from the workbook `survey.xlsx` stored on project `data` directory and saves it as the data frame `survey`.
+
+```{r}
+library(rio)
+survey <- import(file = "data/survey.xlsx")
+```
+
+The results are as follows:
+
+```{r}
+head(survey) # first 6 rows
+str(survey)
+```
+
+As you can see, the variable `Sex`, `W.Hnd`, etc. are a character vectors, which is not desirable. They are a categorical variables, so they must be factors in R.
+
+
+### Exporting data from R
+
+So far, we reviewed a wide range of methods for importing data into R. But sometimes you’ll want to go the other way - exporting data from R - so that data can be archived or imported into external applications. Now, you’ll learn how to output an R object to a delimited text file, an Excel spreadsheet, or a statistical application (such as SPSS, SAS, or Stata).
+
+You can use the `write.table()` function to output an R object to a delimited text file. The format is
+
+```{r eval=FALSE}
+write.table(x, outfile, sep=delimiter, quote=TRUE, na="NA")
+```
+
+where `x` is the object and `outfile` is the target file. For example, the statement
+
+```{r}
+write.table(x = survey, file = "output/data/survey.txt", sep = "\t", 
+            dec = ",", row.names = FALSE, quote = FALSE)
+```
+
+saves the dataset `survey` to a tab-delimited file named `survey.txt` in the project `output/data` directory. Replacing `sep="\t"` with `sep=";"` saves the data in a semicolon-delimited file. By default, strings are enclosed in quotes (`""`) and missing values are written as `NA`. We will not print row names (`row.names = FALSE`) and quote (`quote = FALSE`) in the output text file.
+
+The `export()` function in the **rio** package can be used to save an R data frame to an Excel workbook. For example, the statements
+
+```{r}
+library(rio)
+export(x = gss.2016, file = "output/data/gss.xlsx")
+```
+
+
+export the data frame `gss.2016` to a worksheet (Sheet 1 by default) in an Excel workbook named `gss.xlsx` in the project `output/data` directory. By default, the variable names in the dataset are used to create column headings in the spreadsheet, and row names are placed in the first column of the spreadsheet. If `gss.xlsx` already exists, it’s overwritten.
+
+The `export()` function in the **rio** package can be used to export a data frame to an external statistical application. For example, the code
+
+```{r}
+library(rio)
+export(x = survey, file = "output/data/survey.sav")
+
+```
+
+exports the data frame `survey` into an SPSS data file named `survey.sav`.
+
+Please study carefully the following codes and outputs:
+
+```{r eval=FALSE}
+# Export (tab or semicolon) delimited text files with and withot encoding
+write.table(x = survey, file = "output/data/survey.txt", sep = "\t", 
+            dec = ",", row.names = FALSE, quote = FALSE)
+write.table(x = survey, file = "output/data/survey.csv", sep = ";", 
+            dec = ",", row.names = FALSE, quote = FALSE)
+write.table(x = survey, file = "output/data/survey_utf-8.txt", sep = "\t", 
+            dec = ",", row.names = FALSE, quote = FALSE, fileEncoding = "UTF-8")
+write.table(x = survey, file = "output/data/survey_latin2.txt", sep = "\t", 
+            dec = ",", row.names = FALSE, quote = FALSE, fileEncoding = "latin2")
+write.table(x = survey, file = "output/data/survey_utf-8.csv", sep = ";", 
+            dec = ",", row.names = FALSE, quote = FALSE, fileEncoding = "UTF-8")
+write.table(x = survey, file = "output/data/survey_latin2.csv", sep = ";", 
+            dec = ",", row.names = FALSE, quote = FALSE, fileEncoding = "latin2")
+
+# Export Excel and SPSS files
+library(rio)
+export(x = survey, file = "output/data/survey.xlsx")
+export(x = survey, file = "output/data/survey.sav")
+export(x = gss.2016, file = "output/data/gss.xlsx")
+export(x = gss.2016, file = "output/data/gss.sav")
+```
+
+
+```{r eval=FALSE, include=FALSE}
+rio::export(x = gss.2016, file = "output/data/gss.xlsx")
+write.table(x = survey, file = "output/data/gss.txt", sep = "\t", 
+            dec = ",", row.names = FALSE, quote = FALSE)
+
+```
+
+```{r eval=FALSE, include=FALSE}
+file.copy(from = "output/data/gss.xlsx", to = "data/", overwrite = T)
+file.copy(from = "output/data/gss.txt", to = "data/", overwrite = T)
+```
+
+```{r eval=FALSE, include=FALSE}
+library(MASS)
+library(rio)
+export(x = survey, file = "output/data/survey.xlsx")
+export(x = survey, file = "output/data/survey.sav")
+write.table(x = survey, file = "output/data/survey.txt", sep = "\t", 
+            dec = ",", row.names = FALSE, quote = FALSE)
+write.table(x = survey, file = "output/data/survey.csv", sep = ";", 
+            dec = ",", row.names = FALSE, quote = FALSE)
+write.table(x = survey, file = "output/data/survey_utf-8.txt", sep = "\t", 
+            dec = ",", row.names = FALSE, quote = FALSE, fileEncoding = "UTF-8")
+write.table(x = survey, file = "output/data/survey_latin2.txt", sep = "\t", 
+            dec = ",", row.names = FALSE, quote = FALSE, fileEncoding = "latin2")
+write.table(x = survey, file = "output/data/survey_utf-8.csv", sep = ";", 
+            dec = ",", row.names = FALSE, quote = FALSE, fileEncoding = "UTF-8")
+write.table(x = survey, file = "output/data/survey_latin2.csv", sep = ";", 
+            dec = ",", row.names = FALSE, quote = FALSE, fileEncoding = "latin2")
+
+```
+
+```{r eval=FALSE, include=FALSE}
+file.copy(from = "output/data/survey.xlsx", to = "data/", overwrite = T)
+file.copy(from = "output/data/survey.sav", to = "data/", overwrite = T)
+file.copy(from = "output/data/survey.txt", to = "data/", overwrite = T)
+file.copy(from = "output/data/survey.csv", to = "data/", overwrite = T)
+file.copy(from = "output/data/survey_utf-8.txt", to = "data/", overwrite = T)
+file.copy(from = "output/data/survey_latin2.txt", to = "data/", overwrite = T)
+file.copy(from = "output/data/survey_utf-8.csv", to = "data/", overwrite = T)
+file.copy(from = "output/data/survey_latin2.csv", to = "data/", overwrite = T)
+```
+
+## Data manipulation
+
+In the previous chapter, we covered a variety of methods for importing data into R. Unfortunately, getting your data in the rectangular arrangement of a matrix or data frame is only the first step in preparing it for analysis. In this early stage we try to get as much information as we can.
+
+### Get information
+
+When working with (large) data frames, you must first develop a clear understanding of the structure and main elements of the data set. Therefore, it can often be useful to show only a small part of the entire data set. To do this in R, you can use the functions `head()` or `tail()`. The `head()` function shows the first part of the data frame. The `tail()` function shows the last part. Both functions print a top line called the *header* which contains the names of the different variables in the data set.
+
+```{r}
+head(gss.2016)
+tail(gss.2016, n = 3)
+```
+
+Another method to get a rapid overview of the data is the `str()` function. The `str()` function shows the structure of the data set. 
+
+```{r}
+str(gss.2016)
+```
+
+For a data frame it gives the following information:
+
+* The total number of observations (e.g. 2867 voters)
+* The total number of variables (e.g. 2 variables)
+* A full list of the variables names (`grass`, `age`)
+* The data type of each variable (`chr` )
+* The first observations
+
+
+When you receive a new data frame, applying the `str()` function is often the first step. It is a great way to get more insight into the data set before deeper analysis.
+
+Please study carefully the following codes and outputs:
+
+```{r}
+str(gss.2016)        # Structure of an Arbitrary R Object
+head(gss.2016)       # Return the First Parts of an Object
+dim(gss.2016)        # Dimensions of an Object
+ncol(gss.2016)       # The Number of Rows of a data frame
+nrow(gss.2016)       # The Number of Columns of a data frame
+names(gss.2016)      # The Column Names of an Object
+typeof(gss.2016)     # Type of an Object
+class(gss.2016)      # Class of an Object
+str(survey)
+head(survey)
+dim(survey)
+ncol(survey)
+nrow(survey)
+names(survey)
+typeof(survey)
+class(survey)
+```
+
+### Data type conversions
+
+As you have known, in R, you use numeric vectors to represent quantitative variables, and you use factors to represent categorical variables. In the data frame `gss.2016`, the variable `grass` is character vector, but it should be a factor. R provides a set of functions to identify an object’s data type and convert it to a different data type. You can use the function `factor()` to convert from character or numeric to factor.
+
+```{r}
+str(gss.2016)                             # grass is character
+gss.2016$grass <- factor(gss.2016$grass)  # convert
+str(gss.2016)                             # grass is factor
+```
+
+The continuous variable `age` is also character, but it should be a numeric. What is the problem with age variable? Use the `unique()` and `table()` functions.
+
+```{r}
+unique(gss.2016$age)
+table(gss.2016$age, useNA = "ifany")
+```
+
+`unique(x)` returns an object of the same type of `x`, but with only one copy of each duplicated element. `table(x)` returns the same, plus the number of times a particular value of `x` occurs. 
+
+Age appears to be measured in years up to age 88, and then `"89 OR OLDER"` represents people who are 89 years old or older. Since `"89 OR OLDER"` can not be a number, trying to force the age variable with `"89 OR OLDER"` in it into a numeric variable would result in an error. Before converting `age` into a numeric variable, you should first recode anyone who has a value of `"89 OR OLDER"` to instead have a value 89. 
+
+```{r}
+gss.2016$age[gss.2016$age %in% "89 OR OLDER"] <- "89"  # recoding
+gss.2016$age <- as.numeric(gss.2016$age)               # data type conversion
+str(gss.2016) 
+```
+
+By now, the data frame `gss.2016` is in the desired structure. 
+
+What about the data frame `survey`? As we mentioned, there are a few variables, namely `Sex`, `W.Hnd`, `Fold`, `Clap`, `Exer`,`Smoke`, and`M.I`, that are categorical, so you need to convert to factor. We can use the `factor()` function:
+
+```{r}
+survey$Sex <- factor(survey$Sex)
+survey$W.Hnd <- factor(survey$W.Hnd)
+survey$Fold <- factor(survey$Fold)
+survey$Clap <- factor(survey$Clap)
+survey$Exer <- factor(survey$Exer)
+survey$Smoke <- factor(survey$Smoke)
+survey$M.I <- factor(survey$M.I)
+str(survey)
+```
+
+Our dataset `survey` contains only numeric and factor variables. But two variables (`Exer` an`Smoke`) are ordinal categorical variable, so you need to check the levels.
+
+Sometimes it’s useful to know the number of levels of a factor. The convenience function `nlevels()` extracts the number of levels from a factor:
+
+```{r}
+nlevels(survey$Exer)
+```
+
+To look at the levels of a factor, you use the `levels()` function. For example,
+to extract the factor levels of `Exer`, use the following:
+
+```{r}
+levels(survey$Exer)
+```
+
+As you can see, each student has a status of exercise (None, Some, Freq), how often the student exercises. Notice, in the output above the levels are ordered alphabetically. However, we need to sort in the order None, Some, Freq:
+
+```{r}
+survey$Exer <- factor(survey$Exer, levels=c("None", "Some", "Freq"))
+levels(survey$Exer)
+```
+
+In R, there is a really big practical advantage to order factor's level. A great
+many R functions recognize and treat ordered factors differently by printing results in the order that you expect. For example, 
+
+```{r}
+table(survey$Exer, useNA = "ifany")
+```
+
+We need to order the levels in `Smoke` variable.
+
+```{r}
+levels(survey$Smoke)
+table(survey$Smoke, useNA = "ifany")
+survey$Smoke <- factor(survey$Smoke, levels=c("Never", "Occas", "Regul","Heavy"))
+levels(survey$Smoke)
+table(survey$Smoke, useNA = "ifany")
+```
+
+### Transformation
+
+### Identifying and treating missing values 
+
+In addition to making sure the variables used are an appropriate type, it was also important to make sure that missing values were treated appropriately by R. In R, missing values are recorded as `NA`, which stands for not available. Researchers code missing values in many different ways when collecting and storing data. Some of the more common ways to denote missing values are the following: 
+
+* blank 
+* 777, -777, 888, -888, 999, -999, or something similar 
+* a single period 
+* -1 
+* NULL.
+
+Other responses, such as “Don’t know” or “Inapplicable,” may sometimes be treated as missing or as response categories depending on what is most appropriate given the characteristics of the data and the analysis goals.
+
+
+In the summary of the `gss.2016` data, 
+
+```{r}
+summary(gss.2016)
+```
+
+
+the `grass` variable has five possible values: `DK` (don’t know), `IAP` (inapplicable), `LEGAL`, `NOT LEGAL`, and `NA` (not available). The `DK`, `IAP`, and `NA` could all be considered missing values. However, R treats only `NA` as missing. Before conducting any analyses, the `DK` and `IAP` values could be converted to `NA` to be treated as missing in any analyses. That is, the `grass` variable could be recoded so that these values are all `NA`. Note that `NA` is a reserved “word” in R. In order to use `NA`, both letters must be uppercase (`Na` or `na` does not work), and there can be no quotation marks (R will treat `"NA"` as a character rather than a true missing value). There are many ways to recode variables in R. For example,
+
+
+```{r}
+table(gss.2016$grass, useNA = "ifany")   # before recoding
+library(car)
+gss.2016$grass <- car::recode(var = gss.2016$grass, recodes = 'c("DK", "IAP")=NA')
+table(gss.2016$grass, useNA = "ifany")   # after recoding
+```
+
+
+### Numeric to factor
+
+In addition to solving the `age` and `grass` recoding, the final plan to create the age categories shown below. The `age` variable currently holds the age in years rather than age categories. The age can be in four categories: 
+
+* 18-29
+* 30-59
+* 60-74
+* 75+
+
+The function `cut()` can be used to divide a continuous variable into categories by cutting it into pieces and adding a label to each piece. 
+
+```{r}
+gss.2016$age.f <- cut(x = gss.2016$age, breaks = c(-Inf, 29, 59, 74, Inf),
+    labels = c("<30", "30-59", "60-74", "75+" ))
+table(gss.2016$age.f, useNA = "ifany")
+```
+
+`cut()` takes a variable like `age` as the first argument. The second thing to add after the variable name is a vector made up of the breaks. Breaks specify the lower and upper limit of each category of values. The first entry is the lowest value of the first category, the second entry is the highest value of the first category, the third entry is the highest value of the second category, and so on. The first and last values in the vector are `-Inf` and `Inf`. These are negative infinity and positive infinity. This was for convenience rather than looking up the smallest and largest values of variable `age`. It also makes the code more flexible in case there is a new data point with a smaller or larger value. The final thing to add is a vector made up of the labels for the categories, with each label inside quote marks.
+
+
+## Descriptive statistics
+
+R has built in functions for a large number of summary statistics. To illustrate the main R functions we will use the `survey` and `gss.2016` datasets. R has tons of packages to explore our dataset, but we focus on built-in possibilities, **psych** and **DescTools** packages.
+
+Let us first see what kind of objects are included in `survey` and `gss.2016` by using `summary()` function.
+
+```{r}
+summary(gss.2016)
+summary(survey)
+```
+
+The type of the descriptive statistics we use depends on whether data is numeric (continuous) or categorical and so we will look at each case separately next.
+
+### Measurements
+
+Recall that for numeric variables, we are usually interested in measuring center tendency and spread to get a sense of data. Suppose that we are interested in `Height` column, in which students' height is measured. From the `summary(survey)` table above we know that this variable is indeed a numeric data, and therefore we can measure central tendency and spread of this variable as we do in the following codes, respectively:
+
+
+```{r}
+# Central Tendency	
+mean(survey$Height, na.rm = T)     # Mean
+median(survey$Height, na.rm = T)   # Median
+
+# Spread
+min(survey$Height, na.rm = T)      # Minimum
+max(survey$Height, na.rm = T)      # Maximum
+range(survey$Height, na.rm = T)    # Range
+IQR(survey$Height, na.rm = T)      # IQR
+var(survey$Height, na.rm = T)      # Variance
+sd(survey$Height, na.rm = T)       # Standard Deviation
+
+```
+
+All of these functions have optional arguments to address various complications that your data might have. For example, if your data includes some NAs, then instead of using `mean(survey$Height)` you should use `mean(survey$Height, na.rm = T)`, which tells R to ignore NAs in the data.
+
+
+Please study carefully the following codes and outputs:
+
+```{r}
+#install.packages("psych")
+library(psych)
+describe(gss.2016)
+describe(survey)
+
+#install.packages("DescTools")
+library(DescTools)
+Desc(gss.2016, plot=F)
+Desc(survey, plot=F)
+
+# measurements for groups
+describeBy(x = survey$Wr.Hnd, group = survey$Sex, mat=T)
+Desc(Wr.Hnd~Sex, data=survey, plot=F)
+```
+
+### Tables
+
+For categorical variables, counts and percentages can be used to summarize data:
+
+```{r}
+table(gss.2016$grass, useNA = "ifany")
+table(gss.2016$age.f, useNA = "ifany")
+table(survey$Sex, useNA = "ifany")
+
+prop.table(table(gss.2016$grass, useNA = "ifany"))
+prop.table(table(gss.2016$age.f, useNA = "ifany"))
+prop.table(table(survey$Sex, useNA = "ifany"))
+
+Desc(gss.2016$grass, plot=F)
+
+# 2D tables
+table(gss.2016$grass, gss.2016$age.f, useNA = "ifany")
+Desc(grass~age.f, data=gss.2016, plot=F)
+```
+
+## Plots
+
+In statistics and other sciences, being able to plot your results in the form
+of a graphic is often useful. An effective and accurate visualization can
+make your data come to life and convey your message in a powerful way.
+R has very powerful graphics capabilities that can help you visualize your
+data. In this chapter, we give you a look at *traditional graphics* and *ggplot2* graphics.
+
+We will look at five methods of visualizing data:
+
+* Scatterplot
+* Bar plot
+* Box plot
+* Histogram
+* One-dimensional strip plot
+
+### Traditional graphics
+
+With traditional graphics, you can create many different types of plots, such as
+scatterplots and bar charts. Here are just a few of the different types of plots
+you can create:
+
+* Scatterplot: `plot()`, `stripchart()`
+* Bar plot: `barplot()`
+* Box plot: `boxplot()`
+* Histogram: `hist()`
+* One-dimensional strip plot: `stripchart()`
+
+For a complete list of the different types of plots, see the Help at
+`?graphics`. 
+
+#### Bar plot
+
+A bar plot displays the distribution (frequency) of a categorical variable through vertical or horizontal bars. In its simplest form, the format of the barplot() function is
+
+
+```{r fig.align='center', fig.asp = 0.7, fig.width = 6, out.width = '60%'}
+par(mar = c(2, 2, 2, 0.1), las=1, mgp=c(2.5,0.1, 0), tcl=0.15)
+barplot(table(gss.2016$age.f))
+```
+
+where `gss.2016$age.f` is a factor.
+
+The values `table(gss.2016$age.f)` determine the heights of the bars in the plot, and a vertical bar plot is produced. Including the option `horiz=TRUE` produces a horizontal bar chart instead. You can also add annotating options. The main option adds a plot title, whereas the xlab and ylab options add x-axis and y-axis labels, respectively.
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+par(mar = c(4, 4, 2, 0.1), las=1, mgp=c(2.5,0.1, 0), tcl=0.15)
+counts <- table(gss.2016$age.f)
+barplot(counts, 
+        main="Simple Bar Plot", 
+        xlab="Age", ylab="Frequency")
+barplot(counts, 
+        main="Simple Bar Plot", 
+        xlab="Age", ylab="Frequency",
+        horiz=T)
+```
+
+You can customize many features of a graph (fonts, colors, axes, and labels) through options called graphical parameters. One way is to specify these options through the `par()` function. Values set in this manner will be in effect for the rest of the session or until they’re changed. The format is `par(optionname=value, optionname=value, ...)`. Specifying `par()` without parameters produces a list of the current graphical settings. 
+
+The relevant parameters are shown below
+
+Parameter    |   Description
+-------------|--------------------
+`mar`        | A numerical vector of the form `c(bottom, left, top, right)` which gives the number of lines of margin to be specified on the four sides of the plot. The default is `c(5, 4, 4, 2) + 0.1`.
+`las`        | Specifies that labels are parallel (= 0) or perpendicular (= 2) to the axis.
+`tck`        |	Length of each tick mark as a fraction of the plotting region (a negative number is outside the graph, a positive number is inside, 0 suppresses ticks, and 1 creates gridlines). The default is -0.01.
+`mgp`        | The margin line for the axis title, axis labels and axis line. Note that `mgp[1]` affects title whereas `mgp[2:3]` affect axis. The default is `c(3, 1, 0)`.
+
+
+If the argument of `barplot()` is a matrix rather than a vector, the resulting graph will be a stacked or grouped bar plot. If `beside=FALSE` (the default), then each column of the matrix produces a bar in the plot, with the values in the column giving the heights of stacked “sub-bars.” If `beside=TRUE`, each column of the matrix represents a group, and the values in each column are juxtaposed rather than stacked.
+
+Consider the cross-tabulation of age and votes:
+
+```{r}
+counts <- table(gss.2016$grass, gss.2016$age.f)
+counts
+```
+
+You can graph the results as either a stacked or a grouped bar plot. The resulting graphs are displayed below
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+par(mar = c(4, 4, 2, 0.1), las=1, mgp=c(2.5,0.1, 0), tcl=0.15)
+barplot(counts, 
+        main="Stacked Bar Plot", 
+        xlab="Age", ylab="Frequency",
+        col=c("lightgreen", "red"),
+        legend=T)
+barplot(counts, 
+        main="Stacked Bar Plot", 
+        xlab="Age", ylab="Frequency",
+        col=c("lightgreen", "red"),
+        legend=T, beside = T)
+```
+
+
+Bar plots needn’t be based on counts or frequencies. You can create bar plots that represent means, medians, standard deviations, and so forth by using the aggregate function and passing the results to the `barplot()` function. The following listing shows an example, which is displayed below.
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+par(mar = c(4, 4, 2, 0.1), las=1, mgp=c(2.5,0.1, 0), tcl=0.15)
+means <- aggregate(survey$Height, 
+                   survey[,"Sex",drop=F], mean, na.rm=T)
+means
+barplot(means$x, names.arg = means$Sex, 
+        main="Mean height")
+barplot(means$x, names.arg = means$Sex, 
+        main="Mean height", horiz = T)
+```
+
+`means$x` is the vector containing the heights of the bars, and the option `names.arg=means$Sex` is added to provide labels.
+
+Please study carefully the following codes and outputs:
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+par(mar = c(4, 4, 2, 0.1), las=1, mgp=c(2.5,0.1, 0), tcl=0.15)
+barplot(table(gss.2016$age.f))
+barplot(table(gss.2016$grass))
+
+barplot(table(gss.2016$grass), col=c("green", "purple"))
+barplot(table(gss.2016$grass), col=c("#78A678", "#7463AC"))
+barplot(table(gss.2016$grass), col=c("#78A678", "#7463AC"),
+xlab="Should marijuana be legal?", ylab="Number of responses")
+
+par(las=1, mgp=c(2,0.2,0), tcl=0.1, mar=c(2,3,1,1))
+barplot(table(gss.2016$grass), col=c("#78A678", "#7463AC"),
+xlab="Should marijuana be legal?", ylab="Number of responses")
+
+# to save plot to PNG
+par(las=1, mgp=c(2,0.2,0), tcl=0.1, mar=c(2,3,1,1))
+barplot(table(gss.2016$grass, gss.2016$age.f), beside = T, legend=T)
+
+png(filename = "output/image/barplot_1.png", width = 400, height = 300)
+par(las=1, mgp=c(2,0.2,0), tcl=0.1, mar=c(2,3,1,1))
+barplot(table(gss.2016$grass, gss.2016$age.f), beside = T, legend=T)
+dev.off()
+```
+
+
+#### Histogram
+
+Histograms display the distribution of a continuous variable by dividing the range of scores into a specified number of bins on the x-axis and displaying the frequency of scores in each bin on the y-axis. You can create histograms with the function
+
+```{r fig.align='center', fig.asp = 0.7, fig.width = 6, out.width = '60%'}
+par(mar = c(2, 2, 2, 0.1), las=1, mgp=c(2.5,0.1, 0), tcl=0.15)
+hist(survey$Wr.Hnd)
+```
+
+where `survey$Wr.Hnd` is a numeric vector of values. The option `freq=FALSE` creates a plot based on probability densities rather than frequencies. The `breaks=` option controls the number of bins. The default produces equally spaced breaks when defining the cells of the histogram. The following listing provides the code for four variations of a histogram; the results are plotted in figure 6.8.
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+par(mar = c(4, 4, 2, 0.1), las=1, mgp=c(2.5,0.1, 0), tcl=0.15)
+hist(survey$Wr.Hnd)
+hist(survey$Wr.Hnd,
+     breaks=20, col = "lightblue")
+hist(survey$Wr.Hnd,
+     breaks=20, col = "lightblue",
+     freq = F)
+rug(jitter(survey$Wr.Hnd))
+lines(density(survey$Wr.Hnd, na.rm = TRUE), 
+      col="red", lwd=2)
+range(survey$Wr.Hnd, na.rm = T)
+hist(survey$Wr.Hnd,
+     breaks=seq(from=13, to=24, by=1), 
+     col = "lightblue", freq = F)
+curve(dnorm(x, mean=mean(survey$Wr.Hnd, na.rm = T), 
+            sd=sd(survey$Wr.Hnd, na.rm = T)), 
+      from=13, to=24, add=T, col="red", lwd=2)
+```
+
+
+#### Box plot
+
+A box-and-whiskers plot describes the distribution of a continuous variable by plotting its five-number summary: the minimum, lower quartile (25th percentile), median (50th percentile), upper quartile (75th percentile), and maximum. It can also display observations that may be outliers (values outside the range of $\pm1.5*IQR$, where IQR is the interquartile range defined as the upper quartile minus the lower quartile). For example, this statement produces the plot shown below:
+
+```{r fig.align='center', fig.asp = 0.7, fig.width = 6, out.width = '60%'}
+par(mar = c(2, 2, 2, 0.1), las=1, mgp=c(2.5,0.1, 0), tcl=0.15)
+boxplot(survey$Wr.Hnd, main="Box plot", ylab="cm")
+```
+
+
+Box plots can be created for individual variables or for variables by group. The format is
+
+```{r eval=FALSE}
+boxplot(formula, data=dataframe)
+```
+
+where `formula` is a formula and `dataframe` denotes the data frame (or list) providing the data. An example of a formula is `y ~ A`, where a separate box plot for numeric variable `y` is generated for each value of categorical variable `A`. The formula `y ~ A*B` would produce a box plot of numeric variable `y`, for each combination of levels in categorical variables `A` and `B`.
+
+Adding the option `horizontal=TRUE` to reverse the axis orientation.
+
+The following code revisits the impact of sex on height with parallel box plots. 
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+par(mar = c(4, 4, 2, 0.1), las=1, mgp=c(2.5,0.1, 0), tcl=0.15)
+boxplot(Height ~ Sex, data=survey)
+boxplot(Height ~ Sex, data=survey, horizontal=TRUE)
+```
+
+
+#### Scatterplot
+
+To create a scatterplot, you use the `plot()`  function. A scatterplot creates points (or sometimes bubbles or other symbols) on your chart. Each point corresponds to an observation in your data. You’ve probably seen or created this type of graphic a million times, so you already know that scatterplots use the Cartesian coordinate system, where one variable is mapped to the x‐axis and a second variable is mapped to the y‐axis.
+
+The most common high level function used to produce plots in R is the `plot()` function. 
+
+```{r fig.align='center', fig.asp = 0.7, fig.width = 6, out.width = '60%'}
+par(mar = c(3, 3, 2, 0.1), las=1, mgp=c(1.5,0.1, 0), tcl=0.15)
+plot(survey$Wr.Hnd)
+```
+
+R has plotted the values of `Wr.Hnd` (on the y axis) against an index since we are only plotting one variable to plot. The index is just the order of the `Wr.Hnd` values in the data frame (1 first in the data frame and 237 last). The `Wr.Hnd` variable name has been automatically included as a y axis label and the axes scales have been automatically set.
+
+To plot a scatterplot of one numeric variable against another numeric variable we just need to include both variables as arguments when using the `plot()` function. For example to plot `Wr.Hnd` on the y axis and `Height` of the x axis.
+
+```{r fig.align='center', fig.asp = 0.7, fig.width = 6, out.width = '60%'}
+par(mar = c(3, 3, 2, 0.1), las=1, mgp=c(1.5,0.1, 0), tcl=0.15)
+plot(x = survey$Height, y = survey$Wr.Hnd)
+```
+
+There is an equivalent approach for these types of plots which often causes some confusion at first. You can also use the formula notation when using the `plot()` function. However, in contrast to the previous method the formula method requires you to specify the y axis variable first, then a `~` and then our x axis variable.
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+par(mar = c(4, 4, 0.1, 0.1))
+plot(Wr.Hnd~Height, data=survey)
+plot(Wr.Hnd~Height, data=survey, col=survey$Sex, pch=16)
+```
+
+
+
+### ggplot2 graphics
+
+ggplot2 graphics is based on **ggplot2** package. Because **ggplot2** isn’t part of the standard distribution of R, you have to download the package from CRAN and install it. To install the **ggplot2** package, use:
+
+```{r eval=FALSE}
+install.packages("ggplot2")
+```
+
+And then to load the package, use:
+
+```{r}
+library("ggplot2")
+```
+
+
+The basic concept of a ggplot2 graphic is that you combine different plot elements into layers. Each layer of a ggplot2 graphic contains information about the following:
+
+* The data that you want to plot: for `ggplot()`, this must be a data
+frame.
+* A mapping from the data to your plot: this usually is as simple as telling `ggplot()` what goes on the x‐axis and what goes on the y‐axis. 
+* A geometric object, or geom in ggplot terminology: the geom defines
+the overall look of the layer (for example, whether the plot is made up of bars, points, or lines).
+
+
+#### Bar plot
+
+Please study carefully the following codes and outputs:
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+library(ggplot2)
+ggplot(data = gss.2016, mapping = aes(x=age.f)) + geom_bar()
+ggplot(data = gss.2016, mapping = aes(x=grass)) + geom_bar()
+```
+
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = gss.2016, mapping = aes(x=age.f)) + geom_bar() + 
+  scale_x_discrete(na.translate = F)
+ggplot(data = gss.2016, mapping = aes(x=grass)) + geom_bar() + 
+  scale_x_discrete(na.translate = F)
+```
+
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = gss.2016, mapping = aes(x=age.f, fill=age.f)) + geom_bar() + 
+  scale_x_discrete(na.translate = F)
+ggplot(data = gss.2016, mapping = aes(x=grass, fill=grass)) + geom_bar() + 
+  scale_x_discrete(na.translate = F)
+```
+
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = gss.2016, mapping = aes(x=grass, fill=grass)) + geom_bar() + 
+  scale_x_discrete(na.translate = F) + 
+  scale_fill_manual(values = c("#78A678", "#7463AC"), guide=F)
+
+ggplot(data = gss.2016, mapping = aes(x=grass, fill=grass)) + geom_bar() + 
+  scale_x_discrete(na.translate = F) + 
+  scale_fill_manual(values = c("#78A678", "#7463AC"), guide=F) + 
+  theme_minimal() + 
+  labs(x="Should marijuana be legal?", y="Number of responses")
+```
+
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = gss.2016[!is.na(gss.2016$grass),], 
+       mapping = aes(x=age.f, fill=grass)) + geom_bar() + 
+  scale_x_discrete(na.translate = F)
+
+ggplot(data = gss.2016[!is.na(gss.2016$grass),], 
+       mapping = aes(x=age.f, fill=grass)) + geom_bar(position = "fill") + 
+  scale_x_discrete(na.translate = F)
+```
+
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = gss.2016[!is.na(gss.2016$grass),], 
+       mapping = aes(x=age.f, fill=grass)) + geom_bar(position = "dodge") + 
+  scale_x_discrete(na.translate = F) + 
+    labs(x="Should marijuana be legal?", y="Number of responses", fill="Legal")
+ggplot(data = gss.2016[!is.na(gss.2016$age.f),], 
+       mapping = aes(x=grass, fill=age.f)) + geom_bar(position = "dodge") + 
+  scale_x_discrete(na.translate = F) + 
+    labs(x="Should marijuana be legal?", y="Number of responses", fill="Age")
+```
+
+
+#### Histogram
+
+```{r eval=FALSE, include=FALSE}
+hist(survey$Wr.Hnd)
+hist(survey$Wr.Hnd, main="")
+lim <- range(survey$Wr.Hnd, na.rm = T)
+lim
+par(mfrow=c(2, 1))
+hist(survey$Wr.Hnd[survey$Sex=="Female"], main="Female", xlim=lim)
+hist(survey$Wr.Hnd[survey$Sex=="Male"], main="Male", xlim=lim)
+par(mfrow=c(1, 1))
+
+
+```
+
+Please study carefully the following codes and outputs:
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = survey, mapping = aes(x=Wr.Hnd)) + geom_histogram()
+ggplot(data = survey, mapping = aes(x=Wr.Hnd)) + geom_histogram(bins = 10)
+```
+
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = survey, mapping = aes(x=Wr.Hnd)) + 
+  geom_histogram(bins = 10, fill="lightblue", colour="blue")
+ggplot(data = survey, mapping = aes(x=Wr.Hnd)) + 
+  geom_histogram(binwidth = 1, fill="lightblue", colour="blue")
+```
+
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = survey, mapping = aes(x=Wr.Hnd)) + 
+  geom_histogram(binwidth = 1, fill="lightblue", colour="blue") + 
+  facet_wrap(~Sex)
+ggplot(data = survey[!is.na(survey$Sex),], mapping = aes(x=Wr.Hnd)) + 
+  geom_histogram(binwidth = 1, fill="lightblue", colour="blue") + 
+  facet_wrap(~Sex)
+```
+
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = survey[!is.na(survey$Sex),], mapping = aes(x=Wr.Hnd)) + 
+  geom_histogram(binwidth = 1, fill="lightblue", colour="blue") + 
+  facet_wrap(~Sex, ncol=1)
+```
+
+
+#### Scatterplot
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = survey, mapping = aes(x=Wr.Hnd, y=Height)) + 
+  geom_point()
+ggplot(data = survey, mapping = aes(x=Wr.Hnd, y=Height, color=Sex)) + 
+  geom_point()
+```
+
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = survey, mapping = aes(x=Wr.Hnd, y=Height, color=Sex)) + 
+  geom_point() + scale_color_discrete(na.translate=F)
+ggplot(data = survey, mapping = aes(x=Wr.Hnd, y=Height, color=Sex)) + 
+  geom_point() + scale_color_discrete(na.translate=F) + 
+  geom_smooth(se = F, method = lm)
+```
+
+
+#### Box plot
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = survey, mapping = aes(x=Sex, y=Wr.Hnd)) + 
+  geom_boxplot()
+ggplot(data = survey, mapping = aes(x=Sex, y=Wr.Hnd)) + 
+  geom_boxplot() + scale_x_discrete(na.translate=F)
+```
+
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = survey, mapping = aes(x=Sex, y=Wr.Hnd, fill=Sex)) + 
+  geom_boxplot() + scale_x_discrete(na.translate=F) 
+
+ggplot(data = survey, mapping = aes(x=Sex, y=Wr.Hnd, fill=Sex)) + 
+  geom_boxplot() + scale_x_discrete(na.translate=F) + 
+  scale_fill_discrete(guide=F) 
+```
+
+```{r eval=FALSE, include=FALSE}
+stripchart(survey$Wr.Hnd)
+stripchart(survey$Wr.Hnd, vertical = T, pch=1)
+stripchart(survey$Wr.Hnd, vertical = T, pch=1, method = "jitter")
+stripchart(Wr.Hnd~Sex, data=survey, vertical = T, pch=1, method = "jitter")
+```
+
+#### Stripchart
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = survey, mapping = aes(x=1, y=Wr.Hnd)) + 
+  geom_jitter() + scale_x_discrete(na.translate=F) 
+ggplot(data = survey, mapping = aes(x=Sex, y=Wr.Hnd)) + 
+  geom_jitter() + scale_x_discrete(na.translate=F)
+```
+
+
+```{r out.width='50%', fig.show='hold', fig.cap='', fig.asp = 0.8, fig.width = 4}
+ggplot(data = survey, mapping = aes(x=Sex, y=Wr.Hnd)) + 
+  geom_jitter(width = 0.1) + scale_x_discrete(na.translate=F) 
+ggplot(data = survey, mapping = aes(x=Sex, y=Wr.Hnd)) + 
+  geom_jitter(width = 0.1, alpha=0.5, color="red") + 
+  scale_x_discrete(na.translate=F) +
+  geom_boxplot(alpha=0.5)
+```

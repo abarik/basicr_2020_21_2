@@ -1,0 +1,16 @@
+---
+nocite: '@*'
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, echo=FALSE, inclued=FALSE, purl=FALSE, message = FALSE}
+source("common.R")
+```
+
+
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
